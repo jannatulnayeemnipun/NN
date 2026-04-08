@@ -1829,6 +1829,22 @@ svg {
   flex-wrap: wrap;
 }
 
+.service-hero-visual {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-illustration {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  filter: drop-shadow(0 10px 30px rgba(37, 99, 235, 0.1));
+}
+
 .service-features-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
