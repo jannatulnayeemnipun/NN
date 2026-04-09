@@ -1,3 +1,28 @@
+// Inject floating service areas bar
+const injectServiceAreasBar = () => {
+  if (document.querySelector(".floating-service-areas-bar")) return;
+
+  // Get the relative path from current page to root
+  const pathname = window.location.pathname;
+  const depth = (pathname.match(/\//g) || []).length - 1;
+  const relativeRoot = depth > 1 ? "../".repeat(depth - 1) : "./";
+
+  const barHTML = `
+    <div class="floating-service-areas-bar">
+      <a href="${relativeRoot}service-areas/usa/index.html" class="service-area-flag-btn" title="USA SEO Services" aria-label="USA Service Areas">🇺🇸</a>
+      <a href="${relativeRoot}service-areas/canada/index.html" class="service-area-flag-btn" title="Canada SEO Services" aria-label="Canada Service Areas">🇨🇦</a>
+      <a href="${relativeRoot}service-areas/australia/index.html" class="service-area-flag-btn" title="Australia SEO Services" aria-label="Australia Service Areas">🇦🇺</a>
+    </div>
+  `;
+
+  const body = document.body;
+  if (body) {
+    body.insertAdjacentHTML("beforeend", barHTML);
+  }
+};
+
+document.addEventListener("DOMContentLoaded", injectServiceAreasBar);
+
 const formAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
 const navigation = document.querySelector(".site-navigation");
 const menuToggle = document.querySelector(".menu-toggle");
