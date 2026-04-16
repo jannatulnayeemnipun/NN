@@ -152,8 +152,6 @@ contactForm?.addEventListener("submit", async (event) => {
 
   const formData = new FormData(contactForm);
   const submitButton = contactForm.querySelector(".form-submit-button");
-  const accessKeyField = contactForm.querySelector('input[name="access_key"]');
-  accessKeyField.value = formAccessKey;
 
   const name = String(formData.get("name") || "").trim();
   const email = String(formData.get("email") || "").trim();
@@ -171,43 +169,43 @@ contactForm?.addEventListener("submit", async (event) => {
     return;
   }
 
-  if (!formAccessKey) {
-    setFeedback("The contact form needs a Web3Forms access key before it can send messages.", "error");
-    return;
-  }
-
-  formData.set("access_key", formAccessKey);
-  formData.set("email", email);
-  formData.set("name", name);
-  formData.set("website", website);
-  formData.set("service", service);
-  formData.set("message", message);
-
-  const payload = Object.fromEntries(formData.entries());
   submitButton.disabled = true;
   setFeedback("Sending your inquiry...", null);
 
   try {
-    const response = await fetch("https://api.web3forms.com/submit", {
+    // Prepare JSON payload with form data
+    const payload = {
+      name: name,
+      email: email,
+      website: website,
+      service: service,
+      message: message,
+      timestamp: new Date().toISOString()
+    };
+
+    // Send to Google Sheets via fetch POST request
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzCLlkDdRgwjQVjPfIcd3uNBiZMzcSeCPVnp9zC3h1ZKsHqLnpnI1fJ0yK1A9hiTJxc/exec", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(payload)
     });
 
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      throw new Error(result.message || "Something went wrong while sending your inquiry.");
+    // Check if response is ok
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
 
+    // Reset form after successful submission
     contactForm.reset();
 
     if (serviceSelect && preselectedService) {
       serviceSelect.value = "";
     }
+
+    // Show success alert
+    alert("Message Sent Successfully");
 
     setFeedback("Your inquiry was sent successfully. Jannatul will respond through WhatsApp or email.", "success");
   } catch (error) {
