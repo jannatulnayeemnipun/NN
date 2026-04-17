@@ -21,18 +21,41 @@ const injectServiceAreasBar = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", injectServiceAreasBar);
+document.addEventListener("DOMContentLoaded", () => {
+  injectServiceAreasBar();
+  initializeElements();
+  attachEventListeners();
+});
 
 const formAccessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
-const navigation = document.querySelector(".site-navigation");
-const menuToggle = document.querySelector(".menu-toggle");
-const dropdownItems = document.querySelectorAll("[data-dropdown]");
-const emailDropdown = document.querySelector("[data-email-dropdown]");
-const emailButton = emailDropdown?.querySelector("button");
-const copyEmailButtons = document.querySelectorAll("[data-copy-email]");
-const contactForm = document.querySelector("#contact-form");
-const feedbackBox = document.querySelector("#form-feedback");
-const serviceSelect = document.querySelector("#service-select");
+let navigation = null;
+let menuToggle = null;
+let dropdownItems = [];
+let emailDropdown = null;
+let emailButton = null;
+let copyEmailButtons = [];
+let contactForm = null;
+let feedbackBox = null;
+let serviceSelect = null;
+let preselectedService = null;
+
+// Initialize all form and navigation elements when DOM is ready
+const initializeElements = () => {
+  navigation = document.querySelector(".site-navigation");
+  menuToggle = document.querySelector(".menu-toggle");
+  dropdownItems = document.querySelectorAll("[data-dropdown]");
+  emailDropdown = document.querySelector("[data-email-dropdown]");
+  emailButton = emailDropdown?.querySelector("button");
+  copyEmailButtons = document.querySelectorAll("[data-copy-email]");
+  contactForm = document.querySelector("#contact-form");
+  feedbackBox = document.querySelector("#form-feedback");
+  serviceSelect = document.querySelector("#service-select");
+
+  const params = new URLSearchParams(window.location.search);
+  preselectedService = params.get("service");
+
+  console.log("Elements initialized. Contact form:", contactForm ? "found" : "not found");
+};
 
 const setMenuState = (isOpen) => {
   if (!navigation || !menuToggle) return;
@@ -49,83 +72,172 @@ const closeDropdowns = () => {
   });
 };
 
-menuToggle?.addEventListener("click", () => {
-  const isOpen = !navigation?.classList.contains("is-open");
-  setMenuState(Boolean(isOpen));
-});
+const attachEventListeners = () => {
+  console.log("Attaching event listeners...");
 
-dropdownItems.forEach((item) => {
-  const trigger = item.querySelector(".dropdown-trigger");
+  // Menu toggle
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = !navigation?.classList.contains("is-open");
+      setMenuState(Boolean(isOpen));
+    });
+  }
 
-  trigger?.addEventListener("click", () => {
-    const isMobile = window.innerWidth <= 960;
+  // Dropdown items
+  dropdownItems.forEach((item) => {
+    const trigger = item.querySelector(".dropdown-trigger");
 
-    if (!isMobile) {
+    trigger?.addEventListener("click", () => {
+      const isMobile = window.innerWidth <= 960;
+
+      if (!isMobile) {
+        const nextState = !item.classList.contains("is-open");
+        closeDropdowns();
+        item.classList.toggle("is-open", nextState);
+        trigger.setAttribute("aria-expanded", String(nextState));
+        return;
+      }
+
       const nextState = !item.classList.contains("is-open");
-      closeDropdowns();
       item.classList.toggle("is-open", nextState);
       trigger.setAttribute("aria-expanded", String(nextState));
-      return;
+    });
+  });
+
+  // Document click listeners
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("[data-dropdown]")) {
+      closeDropdowns();
     }
 
-    const nextState = !item.classList.contains("is-open");
-    item.classList.toggle("is-open", nextState);
-    trigger.setAttribute("aria-expanded", String(nextState));
-  });
-});
-
-document.addEventListener("click", (event) => {
-  if (!event.target.closest("[data-dropdown]")) {
-    closeDropdowns();
-  }
-
-  if (!event.target.closest("[data-email-dropdown]")) {
-    emailDropdown?.classList.remove("is-open");
-    emailButton?.setAttribute("aria-expanded", "false");
-  }
-});
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 960) {
-    setMenuState(false);
-  }
-});
-
-emailButton?.addEventListener("click", () => {
-  const nextState = !emailDropdown.classList.contains("is-open");
-  emailDropdown.classList.toggle("is-open", nextState);
-  emailButton.setAttribute("aria-expanded", String(nextState));
-});
-
-copyEmailButtons.forEach((button) => {
-  button.addEventListener("click", async () => {
-    const email = button.getAttribute("data-copy-email");
-    const originalLabel = button.textContent;
-
-    if (!email) return;
-
-    try {
-      await navigator.clipboard.writeText(email);
-      button.textContent = "Email copied";
-      window.setTimeout(() => {
-        button.textContent = originalLabel;
-      }, 1600);
-    } catch {
-      button.textContent = email;
+    if (!event.target.closest("[data-email-dropdown]")) {
+      emailDropdown?.classList.remove("is-open");
+      emailButton?.setAttribute("aria-expanded", "false");
     }
   });
-});
 
-const params = new URLSearchParams(window.location.search);
-const preselectedService = params.get("service");
+  // Window resize
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 960) {
+      setMenuState(false);
+    }
+  });
 
-if (serviceSelect && preselectedService) {
-  const matchingOption = Array.from(serviceSelect.options).find((option) => option.value === preselectedService || option.text === preselectedService);
-
-  if (matchingOption) {
-    serviceSelect.value = matchingOption.value || matchingOption.text;
+  // Email button
+  if (emailButton) {
+    emailButton.addEventListener("click", () => {
+      const nextState = !emailDropdown.classList.contains("is-open");
+      emailDropdown.classList.toggle("is-open", nextState);
+      emailButton.setAttribute("aria-expanded", String(nextState));
+    });
   }
-}
+
+  // Copy email buttons
+  copyEmailButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const email = button.getAttribute("data-copy-email");
+      const originalLabel = button.textContent;
+
+      if (!email) return;
+
+      try {
+        await navigator.clipboard.writeText(email);
+        button.textContent = "Email copied";
+        window.setTimeout(() => {
+          button.textContent = originalLabel;
+        }, 1600);
+      } catch {
+        button.textContent = email;
+      }
+    });
+  });
+
+  // Pre-select service from URL parameter
+  if (serviceSelect && preselectedService) {
+    const matchingOption = Array.from(serviceSelect.options).find((option) => option.value === preselectedService || option.text === preselectedService);
+
+    if (matchingOption) {
+      serviceSelect.value = matchingOption.value || matchingOption.text;
+    }
+  }
+
+  // Contact form submission
+  if (contactForm) {
+    console.log("Contact form found, attaching submit listener");
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      console.log("Form submitted!");
+
+      const formData = new FormData(contactForm);
+      const submitButton = contactForm.querySelector(".form-submit-button");
+
+      const name = String(formData.get("name") || "").trim();
+      const email = String(formData.get("email") || "").trim();
+      const website = String(formData.get("website") || "").trim();
+      const service = String(formData.get("service") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      console.log("Form data:", { name, email, website, service, message });
+
+      if (!name || !email || !website || !service || !message) {
+        console.log("Validation failed - missing fields");
+        setFeedback("Please complete all required fields before sending your inquiry.", "error");
+        return;
+      }
+
+      if (!isValidUrl(website)) {
+        console.log("Invalid URL:", website);
+        setFeedback("Please enter a valid website URL, including https://.", "error");
+        return;
+      }
+
+      submitButton.disabled = true;
+      setFeedback("Sending your inquiry...", null);
+
+      try {
+        const payload = {
+          name: name,
+          email: email,
+          website: website,
+          service: service,
+          message: message,
+          timestamp: new Date().toISOString()
+        };
+
+        console.log("Sending payload:", payload);
+
+        const response = await fetch("https://script.google.com/macros/s/AKfycbzCLlkDdRgwjQVjPfIcd3uNBiZMzcSeCPVnp9zC3h1ZKsHqLnpnI1fJ0yK1A9hiTJxc/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        console.log("Request sent successfully");
+
+        contactForm.reset();
+
+        if (serviceSelect && preselectedService) {
+          serviceSelect.value = "";
+        }
+
+        alert("Message Sent Successfully");
+
+        setFeedback("Your inquiry was sent successfully. Jannatul will respond through WhatsApp or email.", "success");
+      } catch (error) {
+        console.error("Form submission error:", error);
+        setFeedback(error.message || "Unable to send your inquiry right now. Please try again.", "error");
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  } else {
+    console.log("Contact form NOT found");
+  }
+};
 
 const setFeedback = (message, type) => {
   if (!feedbackBox) return;
@@ -146,69 +258,3 @@ const isValidUrl = (value) => {
     return false;
   }
 };
-
-contactForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(contactForm);
-  const submitButton = contactForm.querySelector(".form-submit-button");
-
-  const name = String(formData.get("name") || "").trim();
-  const email = String(formData.get("email") || "").trim();
-  const website = String(formData.get("website") || "").trim();
-  const service = String(formData.get("service") || "").trim();
-  const message = String(formData.get("message") || "").trim();
-
-  if (!name || !email || !website || !service || !message) {
-    setFeedback("Please complete all required fields before sending your inquiry.", "error");
-    return;
-  }
-
-  if (!isValidUrl(website)) {
-    setFeedback("Please enter a valid website URL, including https://.", "error");
-    return;
-  }
-
-  submitButton.disabled = true;
-  setFeedback("Sending your inquiry...", null);
-
-  try {
-    // Prepare JSON payload with form data
-    const payload = {
-      name: name,
-      email: email,
-      website: website,
-      service: service,
-      message: message,
-      timestamp: new Date().toISOString()
-    };
-
-    // Send to Google Sheets via fetch POST request with CORS mode
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzCLlkDdRgwjQVjPfIcd3uNBiZMzcSeCPVnp9zC3h1ZKsHqLnpnI1fJ0yK1A9hiTJxc/exec", {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    // With no-cors mode, we can't check response status, so we assume success
-    // Reset form after successful submission
-    contactForm.reset();
-
-    if (serviceSelect && preselectedService) {
-      serviceSelect.value = "";
-    }
-
-    // Show success alert
-    alert("Message Sent Successfully");
-
-    setFeedback("Your inquiry was sent successfully. Jannatul will respond through WhatsApp or email.", "success");
-  } catch (error) {
-    console.error("Form submission error:", error);
-    setFeedback(error.message || "Unable to send your inquiry right now. Please try again.", "error");
-  } finally {
-    submitButton.disabled = false;
-  }
-});
