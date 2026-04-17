@@ -161,81 +161,34 @@ const attachEventListeners = () => {
     }
   }
 
-  // Contact form submission
-  if (contactForm) {
-    console.log("Contact form found, attaching submit listener");
+  // Contact form submission - simple approach
+  const form = document.querySelector("#contact-form");
+  if (form) {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    contactForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      console.log("Form submitted!");
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        website: form.website.value,
+        service: form.service.value,
+        message: form.message.value
+      };
 
-      const formData = new FormData(contactForm);
-      const submitButton = contactForm.querySelector(".form-submit-button");
-
-      const name = String(formData.get("name") || "").trim();
-      const email = String(formData.get("email") || "").trim();
-      const website = String(formData.get("website") || "").trim();
-      const service = String(formData.get("service") || "").trim();
-      const message = String(formData.get("message") || "").trim();
-
-      console.log("Form data:", { name, email, website, service, message });
-
-      if (!name || !email || !website || !service || !message) {
-        console.log("Validation failed - missing fields");
-        setFeedback("Please complete all required fields before sending your inquiry.", "error");
-        return;
-      }
-
-      if (!isValidUrl(website)) {
-        console.log("Invalid URL:", website);
-        setFeedback("Please enter a valid website URL, including https://.", "error");
-        return;
-      }
-
-      submitButton.disabled = true;
-      setFeedback("Sending your inquiry...", null);
-
-      try {
-        const payload = {
-          name: name,
-          email: email,
-          website: website,
-          service: service,
-          message: message,
-          timestamp: new Date().toISOString()
-        };
-
-        console.log("Sending payload:", payload);
-
-        const response = await fetch("https://script.google.com/macros/s/AKfycbzCLlkDdRgwjQVjPfIcd3uNBiZMzcSeCPVnp9zC3h1ZKsHqLnpnI1fJ0yK1A9hiTJxc/exec", {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        console.log("Request sent successfully");
-
-        contactForm.reset();
-
-        if (serviceSelect && preselectedService) {
-          serviceSelect.value = "";
-        }
-
+      fetch("https://script.google.com/macros/s/AKfycbzCLlkDdRgwjQVjPfIcd3uNBiZMzcSeCPVnp9zC3h1ZKsHqLnpnI1fJ0yK1A9hiTJxc/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
         alert("Message Sent Successfully");
-
-        setFeedback("Your inquiry was sent successfully. Jannatul will respond through WhatsApp or email.", "success");
-      } catch (error) {
-        console.error("Form submission error:", error);
-        setFeedback(error.message || "Unable to send your inquiry right now. Please try again.", "error");
-      } finally {
-        submitButton.disabled = false;
-      }
+        form.reset();
+      })
+      .catch(() => alert("Error!"));
     });
-  } else {
-    console.log("Contact form NOT found");
   }
 };
 
