@@ -102,6 +102,17 @@ const attachEventListeners = () => {
       item.classList.toggle("is-open", nextState);
       trigger.setAttribute("aria-expanded", String(nextState));
     });
+
+    // Nested dropdown groups
+    const dropdownGroups = item.querySelectorAll(".dropdown-group-trigger");
+    dropdownGroups.forEach((groupTrigger) => {
+      groupTrigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const groupItem = groupTrigger.closest(".dropdown-group");
+        const isOpen = groupItem.classList.contains("is-open");
+        groupItem.classList.toggle("is-open", !isOpen);
+      });
+    });
   });
 
   // Document click listeners
