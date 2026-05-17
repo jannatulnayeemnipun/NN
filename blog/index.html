@@ -1,980 +1,754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SEO Blog: Articles & Guides | Jannatul</title>
-  <meta name="description" content="Read our comprehensive SEO blog covering WordPress SEO, Shopify optimization, keyword research, local SEO, technical SEO, and more from an experienced SEO expert.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="../styles.css">
-  <script type="module" src="../script.js" defer></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SEO Blog: Articles & Guides - Expert Tips & Strategies</title>
+<meta name="description" content="Read comprehensive SEO guides covering WordPress SEO, Shopify, keyword research, local SEO, technical SEO, e-commerce optimization, and more.">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-light: #eff6ff;
+    --star: #f59e0b;
+    --radius: 8px;
+    --font-head: 'Manrope', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--black); background: var(--white); font-size: 14px; line-height: 1.6; }
+
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-family: var(--font-head); font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--black); margin-bottom: 16px; }
+  .section-sub { font-size: 14px; color: var(--gray-600); max-width: 600px; }
+  .stars { color: var(--star); letter-spacing: 2px; font-size: 14px; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: var(--radius);
+    border: none; cursor: pointer; transition: background .2s;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; color: var(--black);
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: var(--radius);
+    border: 1.5px solid var(--gray-300); cursor: pointer; transition: border-color .2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-bottom: 1px solid var(--gray-200);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo .logo-box {
+    width: 32px; height: 32px; background: var(--black); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 10px; font-weight: 800; font-family: var(--font-head);
+  }
+  .nav-logo .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 13px; line-height: 1.1; }
+  .nav-logo .logo-text span { display: block; font-size: 10px; font-weight: 500; color: var(--gray-600); }
+
+  .nav-links { display: flex; align-items: center; gap: 24px; position: relative; }
+  .nav-links a { font-size: 13px; color: var(--gray-700); font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-item { position: relative; display: inline-block; }
+  .nav-dropdown-trigger {
+    background: none; border: none; font-size: 13px; font-weight: 500;
+    color: var(--gray-700); cursor: pointer; padding: 0; display: flex;
+    align-items: center; gap: 4px; transition: color .2s;
+  }
+  .nav-dropdown-trigger:hover { color: var(--accent); }
+  .nav-dropdown-trigger::after {
+    content: '▾'; font-size: 10px; transition: transform .2s;
+  }
+  .nav-item.open .nav-dropdown-trigger::after { transform: rotate(180deg); }
+
+  .dropdown-menu {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    min-width: 280px; display: none; flex-direction: column;
+    padding: 8px 0; z-index: 101;
+  }
+  .nav-item.open .dropdown-menu { display: flex; }
+
+  .dropdown-item {
+    display: block; padding: 10px 16px; font-size: 13px; color: var(--gray-700);
+    transition: background .2s, color .2s;
+  }
+  .dropdown-item:hover { background: var(--gray-50); color: var(--accent); }
+  .dropdown-divider { height: 1px; background: var(--gray-100); margin: 4px 0; }
+
+  /* ─── HERO ─── */
+  .hero { padding: 48px 0; background: linear-gradient(135deg, var(--accent-light) 0%, #fff 100%); }
+  .hero-inner { display: flex; flex-direction: column; gap: 24px; }
+  .hero-content h1 { margin-bottom: 12px; }
+  .hero-content p { font-size: 16px; color: var(--gray-600); max-width: 600px; }
+
+  /* ─── FILTER/CATEGORY SECTION ─── */
+  .blog-section { padding: 56px 0; }
+  .blog-header { text-align: center; margin-bottom: 40px; }
+  
+  .category-filters { 
+    display: flex; 
+    gap: 12px; 
+    margin-bottom: 40px; 
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .category-filter {
+    padding: 8px 18px; 
+    border-radius: 20px; 
+    font-size: 13px; 
+    font-weight: 600;
+    border: 1.5px solid var(--gray-200); 
+    background: #fff; 
+    cursor: pointer; 
+    transition: all .2s;
+  }
+
+  .category-filter:hover { 
+    border-color: var(--accent); 
+    color: var(--accent); 
+  }
+
+  .category-filter.active { 
+    background: var(--accent); 
+    color: #fff; 
+    border-color: var(--accent); 
+  }
+
+  /* ─── BLOG GRID ─── */
+  .blog-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 24px; 
+    margin-bottom: 40px; 
+  }
+
+  .blog-card {
+    display: flex; 
+    flex-direction: column;
+    border: 1px solid var(--gray-200); 
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #fff;
+    transition: box-shadow .2s, border-color .2s;
+    color: var(--black);
+  }
+
+  .blog-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    border-color: var(--accent);
+    color: var(--black);
+  }
+
+  .blog-card-img {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, #e0e7ff 100%);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .blog-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .blog-card-category {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .blog-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font-head);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .blog-card-meta {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--black); color: #fff; padding: 48px 0 24px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand p { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px; }
+  .social-row { display: flex; gap: 8px; }
+  .social-btn { width: 28px; height: 28px; border-radius: 50%; background: #374151; display: grid; place-items: center; font-size: 11px; cursor: pointer; transition: background .2s; }
+  .social-btn:hover { background: var(--accent); }
+  .footer-col h4 { font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .footer-col ul li a { font-size: 12px; color: #d1d5db; transition: color .2s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .contact-item { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: #d1d5db; margin-bottom: 6px; }
+  .contact-item span:first-child { color: #9ca3af; margin-top: 1px; }
+  .map-box { background: #374151; border-radius: var(--radius); height: 80px; display: grid; place-items: center; font-size: 20px; margin-top: 8px; }
+  .footer-bottom { border-top: 1px solid #374151; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 11px; color: #6b7280; }
+  .footer-bottom-links { display: flex; gap: 16px; }
+  .footer-bottom-links a { font-size: 11px; color: #6b7280; transition: color .2s; }
+  .footer-bottom-links a:hover { color: #fff; }
+
+  .center-content { text-align: center; }
+
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .category-filters { justify-content: flex-start; overflow-x: auto; }
+  }
+</style>
 </head>
-<body class="site-shell">
-  <div class="page-aura page-aura-left"></div>
-  <div class="page-aura page-aura-right"></div>
+<body>
 
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand-mark" href="../index.html" aria-label="Jannatul home">Jannatul</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-label">Menu</span>
-      </button>
-      <nav class="site-navigation" id="site-navigation" aria-label="Primary navigation">
-        <ul class="navigation-list">
-          <li class="navigation-item"><a class="navigation-link" href="../index.html">Home</a></li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Services</button>
-            <div class="dropdown-panel dropdown-panel-services">
-              <a class="dropdown-entry" href="../contact.html?service=WordPress%20SEO">
-                <span class="dropdown-entry-title">WordPress SEO</span>
-                <span class="dropdown-entry-copy">Improve technical structure and content visibility for WordPress sites.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Wix%20SEO">
-                <span class="dropdown-entry-title">Wix SEO</span>
-                <span class="dropdown-entry-copy">Align Wix site structure and content with search-driven growth goals.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Magento%20SEO">
-                <span class="dropdown-entry-title">Magento SEO</span>
-                <span class="dropdown-entry-copy">Support large e-commerce catalogs with scalable optimization priorities.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Squarespace%20SEO">
-                <span class="dropdown-entry-title">Squarespace SEO</span>
-                <span class="dropdown-entry-copy">Refine page structure and content signals for cleaner search performance.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Shopify%20SEO">
-                <span class="dropdown-entry-title">Shopify SEO</span>
-                <span class="dropdown-entry-copy">Strengthen category, product, and collection rankings for store growth.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Walmart%20SEO">
-                <span class="dropdown-entry-title">Walmart SEO</span>
-                <span class="dropdown-entry-copy">Optimize product visibility and search rankings on Walmart marketplace.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Big-ecommerce%20SEO">
-                <span class="dropdown-entry-title">Big-ecommerce SEO</span>
-                <span class="dropdown-entry-copy">Scale SEO strategy across large enterprise e-commerce platforms.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Local%20SEO">
-                <span class="dropdown-entry-title">Local SEO</span>
-                <span class="dropdown-entry-copy">Increase map visibility and local search reach for nearby customers.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=On-Page%20SEO">
-                <span class="dropdown-entry-title">On Page SEO</span>
-                <span class="dropdown-entry-copy">Improve relevance, clarity, and ranking signals across key pages.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Off-Page%20SEO">
-                <span class="dropdown-entry-title">Off Page SEO</span>
-                <span class="dropdown-entry-copy">Strengthen authority signals that support long-term search visibility.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Technical%20SEO">
-                <span class="dropdown-entry-title">Technical SEO</span>
-                <span class="dropdown-entry-copy">Fix crawl, indexing, and site performance issues that block rankings.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Keyword%20Research">
-                <span class="dropdown-entry-title">Keyword Research</span>
-                <span class="dropdown-entry-copy">Find realistic search opportunities that match intent and business value.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Competitor%20Analysis">
-                <span class="dropdown-entry-title">Competitor Analysis</span>
-                <span class="dropdown-entry-copy">See where competing websites win traffic and how to close the gap.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Website%20Audit">
-                <span class="dropdown-entry-title">Website Audit</span>
-                <span class="dropdown-entry-copy">Spot the ranking blockers that are holding your site back today.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=Google%20Ads">
-                <span class="dropdown-entry-title">Google Ads</span>
-                <span class="dropdown-entry-copy">Strategic paid search campaigns that drive qualified traffic and conversions.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=YouTube%20SEO">
-                <span class="dropdown-entry-title">YouTube SEO</span>
-                <span class="dropdown-entry-copy">Improve video discovery with stronger targeting and metadata planning.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Consultant</button>
-            <div class="dropdown-panel dropdown-panel-consultant">
-              <div class="dropdown-group">
-                <button class="dropdown-group-trigger" type="button" aria-expanded="false">
-                  <span class="dropdown-group-title">CMS Consultant</span>
-                  <span class="dropdown-group-arrow"></span>
-                </button>
-                <div class="dropdown-submenu">
-                  <a class="dropdown-entry" href="../consultants/wordpress-seo-consultant.html">
-                    <span class="dropdown-entry-title">WordPress SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Platform-specific guidance for stronger rankings and execution.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/wix-seo-consultant.html">
-                    <span class="dropdown-entry-title">Wix SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Translate strategy into practical Wix actions and priorities.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/magento-seo-consultant.html">
-                    <span class="dropdown-entry-title">Magento SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Support large catalog optimization with scalable priorities.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/squarespace-seo-consultant.html">
-                    <span class="dropdown-entry-title">Squarespace SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Refine Squarespace sites for cleaner search performance.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/shopify-seo-consultant.html">
-                    <span class="dropdown-entry-title">Shopify SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Focus store visibility on pages and queries that drive sales.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/walmart-seo-consultant.html">
-                    <span class="dropdown-entry-title">Walmart SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Optimize product visibility on Walmart marketplace.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/big-ecommerce-seo-consultant.html">
-                    <span class="dropdown-entry-title">Big-ecommerce SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Scale SEO strategy across enterprise platforms.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/local-seo-consultant.html">
-                    <span class="dropdown-entry-title">Local SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Guidance for local search visibility and map rankings.</span>
-                  </a>
-                  <a class="dropdown-entry" href="../consultants/youtube-seo-consultant.html">
-                    <span class="dropdown-entry-title">YouTube SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Video discovery strategy and metadata optimization.</span>
-                  </a>
-                </div>
-              </div>
-              <a class="dropdown-entry" href="../consultants/ecommerce-seo-consultant.html">
-                <span class="dropdown-entry-title">E-commerce SEO Consultant</span>
-                <span class="dropdown-entry-copy">Shape a search plan that supports revenue growth and reporting clarity.</span>
-              </a>
-              <a class="dropdown-entry" href="../contact.html?service=YouTube%20SEO%20Consultant">
-                <span class="dropdown-entry-title">YouTube SEO Consultant</span>
-                <span class="dropdown-entry-copy">Video discovery strategy with stronger targeting and metadata.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Service Areas</button>
-            <div class="dropdown-panel dropdown-panel-service-areas">
-              <a class="dropdown-entry" href="../service-areas/usa/index.html">
-                <span class="dropdown-entry-title">US</span>
-                <span class="dropdown-entry-copy">SEO services across United States cities and regions.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/uk/index.html">
-                <span class="dropdown-entry-title">UK</span>
-                <span class="dropdown-entry-copy">SEO services across United Kingdom regions.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/canada/index.html">
-                <span class="dropdown-entry-title">Canada</span>
-                <span class="dropdown-entry-copy">SEO services across Canadian provinces.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/australia/index.html">
-                <span class="dropdown-entry-title">Australia</span>
-                <span class="dropdown-entry-copy">SEO services across Australian states and territories.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/germany/index.html">
-                <span class="dropdown-entry-title">Germany</span>
-                <span class="dropdown-entry-copy">SEO services across German regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/netherlands/index.html">
-                <span class="dropdown-entry-title">Netherlands</span>
-                <span class="dropdown-entry-copy">SEO services across Dutch cities and provinces.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/switzerland/index.html">
-                <span class="dropdown-entry-title">Switzerland</span>
-                <span class="dropdown-entry-copy">SEO services across Swiss cantons and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/sweden/index.html">
-                <span class="dropdown-entry-title">Sweden</span>
-                <span class="dropdown-entry-copy">SEO services across Swedish regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/norway/index.html">
-                <span class="dropdown-entry-title">Norway</span>
-                <span class="dropdown-entry-copy">SEO services across Norwegian regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/singapore/index.html">
-                <span class="dropdown-entry-title">Singapore</span>
-                <span class="dropdown-entry-copy">SEO services across Singapore districts and areas.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/ireland/index.html">
-                <span class="dropdown-entry-title">Ireland</span>
-                <span class="dropdown-entry-copy">SEO services across Irish regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="../service-areas/new-zealand/index.html">
-                <span class="dropdown-entry-title">New Zealand</span>
-                <span class="dropdown-entry-copy">SEO services across New Zealand regions and cities.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item"><a class="navigation-link is-current" href="../case-studies/index.html">Case Studies</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="../portfolio/index.html">Portfolio</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="../about.html">About Me</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="../contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="header-actions">
-        <a class="button button-primary" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a class="button button-secondary" href="../contact.html">Contact</a>
-      </div>
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <div class="logo-box">Y</div>
+      <div class="logo-text">YOUR LOGO <span>SEO EXPERT</span></div>
     </div>
-  </header>
-
-  <main>
-    <section class="blog-listing-header">
-      <div class="container">
-        <h1 class="page-title">SEO Blog & Articles</h1>
-        <p class="page-summary">Comprehensive guides and articles on SEO strategy, optimization techniques, and proven ranking strategies from an experienced SEO expert.</p>
-      </div>
-    </section>
-
-    <section class="blog-grid-section">
-      <div class="container">
-        <div class="blog-articles-grid">
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">WordPress SEO</span>
-              <h2 class="blog-card-title"><a href="wordpress-seo-guide.html">Complete WordPress SEO Guide: From Setup to Rankings</a></h2>
-              <p class="blog-card-excerpt">A comprehensive guide to optimizing your WordPress website for search engines, covering technical setup, on-page optimization, and proven ranking strategies.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">WordPress SEO</span>
-              <h2 class="blog-card-title"><a href="wordpress-seo-checklist.html">WordPress SEO Checklist</a></h2>
-              <p class="blog-card-excerpt">Complete checklist of essential WordPress SEO optimization steps and best practices.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">WordPress SEO</span>
-              <h2 class="blog-card-title"><a href="wordpress-seo-consultant-guide.html">WordPress SEO Consultant Guide</a></h2>
-              <p class="blog-card-excerpt">Professional guide for WordPress SEO consulting and implementation strategies.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="shopify-seo-strategy.html">Shopify SEO Strategy: Rank Products & Collections</a></h2>
-              <p class="blog-card-excerpt">Comprehensive Shopify SEO strategies to optimize product pages, collections, and categories for better search visibility and sales.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="shopify-product-optimization.html">Shopify Product Page Optimization</a></h2>
-              <p class="blog-card-excerpt">Optimize Shopify product pages for higher search rankings and increased conversions.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-seo-beginner.html">E-commerce SEO for Beginners: Start Ranking Products</a></h2>
-              <p class="blog-card-excerpt">Beginner's guide to e-commerce SEO fundamentals and product ranking strategies.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="magento-seo-advanced.html">Magento SEO Advanced</a></h2>
-              <p class="blog-card-excerpt">Advanced SEO optimization techniques for large Magento e-commerce platforms.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="magento-seo-optimization.html">Magento SEO Optimization</a></h2>
-              <p class="blog-card-excerpt">Complete guide to optimizing Magento stores for search visibility and organic traffic.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Keyword Research</span>
-              <h2 class="blog-card-title"><a href="keyword-research-guide.html">Complete Keyword Research Guide: Find Keywords That Rank</a></h2>
-              <p class="blog-card-excerpt">Learn advanced keyword research techniques to discover high-value search terms and build sustainable SEO strategy.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Keyword Research</span>
-              <h2 class="blog-card-title"><a href="long-tail-keyword-research.html">Long-Tail Keyword Research</a></h2>
-              <p class="blog-card-excerpt">Master long-tail keyword strategy for better targeting and higher conversion rates.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Internal Linking</span>
-              <h2 class="blog-card-title"><a href="internal-linking-strategy.html">Internal Linking Strategy for Better SEO</a></h2>
-              <p class="blog-card-excerpt">Strategic internal linking techniques to improve site structure and search rankings.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Local SEO</span>
-              <h2 class="blog-card-title"><a href="local-seo-guide.html">Local SEO Guide: Dominate Local Search Results</a></h2>
-              <p class="blog-card-excerpt">Master local SEO with strategies for Google Business Profile optimization and local citations.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Local SEO</span>
-              <h2 class="blog-card-title"><a href="google-business-profile-optimization.html">Google Business Profile Optimization</a></h2>
-              <p class="blog-card-excerpt">Optimize your Google Business Profile for better local search visibility and customer engagement.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">On-Page SEO</span>
-              <h2 class="blog-card-title"><a href="on-page-seo.html">On-Page SEO Optimization: Complete Checklist & Guide</a></h2>
-              <p class="blog-card-excerpt">Learn every on-page SEO factor that influences rankings from title tags to internal linking.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">On-Page SEO</span>
-              <h2 class="blog-card-title"><a href="title_tag_meta_optimization.html">Title Tag & Meta Optimization</a></h2>
-              <p class="blog-card-excerpt">Master title tag and meta description optimization for higher click-through rates.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="technical-seo-guide.html">Technical SEO Guide: Complete Implementation Checklist</a></h2>
-              <p class="blog-card-excerpt">Master technical SEO fundamentals including site speed, crawlability, indexing, and schema markup.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="core-web-vitals.html">Core Web Vitals Guide: Improve User Experience and Rankings</a></h2>
-              <p class="blog-card-excerpt">Optimize page experience with measurable fixes that support faster browsing and better rankings.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="site-speed-optimization.html">Site Speed Optimization Techniques That Work</a></h2>
-              <p class="blog-card-excerpt">Practical techniques to improve site speed and boost search rankings.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="page-speed-optimization-seo.html">Page Speed Optimization for SEO: Complete Technical Guide</a></h2>
-              <p class="blog-card-excerpt">Complete technical guide to page speed optimization for SEO and user experience.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="schema-markup.html">Structured Data Schema Markup Guide</a></h2>
-              <p class="blog-card-excerpt">Master structured data and schema markup for rich snippets and better search visibility.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="mobile-first-indexing.html">Mobile First Indexing Strategy</a></h2>
-              <p class="blog-card-excerpt">Optimize your website for mobile-first indexing to maintain strong search rankings.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="mobile-seo-guide.html">Mobile SEO Best Practices: Optimize for Mobile-First Indexing</a></h2>
-              <p class="blog-card-excerpt">Complete guide to mobile SEO best practices and mobile-first optimization.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="image-seo-optimization.html">Image SEO and Optimization</a></h2>
-              <p class="blog-card-excerpt">Optimize images for search engines and improve page performance.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Link Building</span>
-              <h2 class="blog-card-title"><a href="backlink-strategy.html">Backlink Strategy: How to Build Quality Links That Rank</a></h2>
-              <p class="blog-card-excerpt">Learn proven backlink strategies and link building techniques to build domain authority.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Link Building</span>
-              <h2 class="blog-card-title"><a href="white_hat_link_building_guest_posting.html">White Hat Link Building: Guest Posting Strategy</a></h2>
-              <p class="blog-card-excerpt">Ethical link building strategies through guest posting and digital PR.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="wix-seo-best-practices.html">Wix SEO Best Practices</a></h2>
-              <p class="blog-card-excerpt">SEO best practices specifically designed for Wix websites.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="wix-seo-optimization.html">Wix SEO Optimization</a></h2>
-              <p class="blog-card-excerpt">Complete Wix SEO optimization guide for better search visibility.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="squarespace-seo-guide.html">Squarespace SEO Guide</a></h2>
-              <p class="blog-card-excerpt">Comprehensive SEO guide for Squarespace websites and builders.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="squarespace-seo-consultant.html">Squarespace SEO Consultant</a></h2>
-              <p class="blog-card-excerpt">Professional Squarespace SEO consulting and optimization strategies.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="youtube-seo-guide.html">YouTube SEO Guide</a></h2>
-              <p class="blog-card-excerpt">Master YouTube SEO for better video discovery and channel growth.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Platform-Specific</span>
-              <h2 class="blog-card-title"><a href="youtube-seo-optimization.html">YouTube SEO Optimization: Complete Video Discovery Guide</a></h2>
-              <p class="blog-card-excerpt">Complete guide to YouTube SEO and video optimization for discoverability.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Search Console</span>
-              <h2 class="blog-card-title"><a href="google-search-console-guide.html">Google Search Console Mastery: Complete Setup & Optimization Guide</a></h2>
-              <p class="blog-card-excerpt">Master Google Search Console for monitoring, optimizing, and improving search performance.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Advanced Topics</span>
-              <h2 class="blog-card-title"><a href="competitor-seo-analysis.html">Competitor SEO Analysis: Smarter Strategy</a></h2>
-              <p class="blog-card-excerpt">Learn how to reverse-engineer competitor strategy and build stronger SEO plans.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Advanced Topics</span>
-              <h2 class="blog-card-title"><a href="voice-search-seo.html">Voice Search SEO Optimization</a></h2>
-              <p class="blog-card-excerpt">Optimize for voice search to capture emerging search trends.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Advanced Topics</span>
-              <h2 class="blog-card-title"><a href="multiregional-seo.html">Multiregional SEO Strategy</a></h2>
-              <p class="blog-card-excerpt">Strategy for optimizing websites targeting multiple regions and languages.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Off-Page SEO</span>
-              <h2 class="blog-card-title"><a href="off-page-seo.html">Off-Page SEO Strategies for Authority Growth</a></h2>
-              <p class="blog-card-excerpt">Strategies to build authority and improve rankings through off-page SEO.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Website Services</span>
-              <h2 class="blog-card-title"><a href="website-audit-guide.html">Website Audit Guide</a></h2>
-              <p class="blog-card-excerpt">Complete guide to conducting comprehensive SEO website audits.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Content Strategy</span>
-              <h2 class="blog-card-title"><a href="content-marketing-seo-strategy.html">Content Marketing for SEO: Strategy & Execution Guide</a></h2>
-              <p class="blog-card-excerpt">Master content marketing for SEO with proven strategies to create valuable content that ranks and converts readers into customers.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">User Experience</span>
-              <h2 class="blog-card-title"><a href="user-experience-seo.html">User Experience (UX) and SEO: How Design Impacts Rankings</a></h2>
-              <p class="blog-card-excerpt">Discover how user experience and design directly influence search rankings and organic traffic through page experience metrics.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Local SEO</span>
-              <h2 class="blog-card-title"><a href="local-citation-building.html">Local Citation Building: Complete Guide for Local Rankings</a></h2>
-              <p class="blog-card-excerpt">Learn how to build high-quality local citations that boost your local search rankings and local business visibility.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Link Strategy</span>
-              <h2 class="blog-card-title"><a href="link-earning-vs-link-building.html">Link Earning vs Link Building: Modern SEO Approach</a></h2>
-              <p class="blog-card-excerpt">Understand the difference between link earning and link building, and learn ethical strategies to earn high-quality backlinks.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Search Quality</span>
-              <h2 class="blog-card-title"><a href="eat-expertise-authority-trustworthiness.html">E-A-T: Expertise, Authoritativeness, Trustworthiness for SEO</a></h2>
-              <p class="blog-card-excerpt">Master E-A-T and how Google evaluates expertise, authoritativeness, and trustworthiness for better search rankings.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-product-ranking-strategy.html">E-commerce Product Ranking Strategy: Rank Products & Drive Sales</a></h2>
-              <p class="blog-card-excerpt">Master e-commerce SEO to rank product pages higher and drive qualified, purchase-ready traffic and conversions.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-seo-best-practices.html">E-Commerce SEO Best Practices: Rank Products and Drive Sales</a></h2>
-              <p class="blog-card-excerpt">Discover proven e-commerce SEO strategies to optimize product pages, categories, and your entire store for search visibility and revenue growth.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="product-page-optimization.html">Product Page Optimization: Complete SEO Checklist for E-Commerce</a></h2>
-              <p class="blog-card-excerpt">Master product page optimization for search rankings, conversion, and revenue. Learn every element that impacts product visibility and sales.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="category-page-seo.html">Category Page SEO: Drive Broad Traffic and Build Topical Authority</a></h2>
-              <p class="blog-card-excerpt">Master category page optimization to rank for broader keywords, drive higher-volume traffic, and build topical authority in your product categories.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-keyword-research.html">E-Commerce Keyword Research: Find High-Converting Buying Intent Keywords</a></h2>
-              <p class="blog-card-excerpt">Learn proven strategies to research e-commerce keywords that convert to sales. Identify buyer intent keywords and build a winning product keyword strategy.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-reviews-seo.html">Customer Reviews as SEO: Boost Rankings and Conversion With Reviews</a></h2>
-              <p class="blog-card-excerpt">Discover how customer reviews drive both SEO rankings and conversion rates. Learn strategies for gathering reviews and leveraging them for growth.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-site-speed.html">E-Commerce Site Speed: The Critical Ranking and Conversion Factor</a></h2>
-              <p class="blog-card-excerpt">Discover why site speed is crucial for e-commerce rankings and conversion. Learn optimization tactics that improve Core Web Vitals and boost sales.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-mobile-seo.html">Mobile-First E-Commerce: Optimize for Mobile-First Indexing and Mobile Users</a></h2>
-              <p class="blog-card-excerpt">Master mobile SEO for e-commerce. Learn how to optimize mobile experience, improve mobile rankings, and drive mobile-first conversion growth.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="seasonal-ecommerce-seo.html">Seasonal E-Commerce SEO: Capture Peak Season Traffic and Revenue</a></h2>
-              <p class="blog-card-excerpt">Learn proven seasonal SEO strategies for e-commerce. Plan ahead, optimize for seasonal keywords, and maximize revenue during peak shopping seasons.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-backlink-strategy.html">E-Commerce Backlink Strategy: Build Authority and Dominate Rankings</a></h2>
-              <p class="blog-card-excerpt">Learn proven e-commerce backlink strategies. Build quality links that establish authority, boost product rankings, and drive sustainable organic revenue.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">E-commerce SEO</span>
-              <h2 class="blog-card-title"><a href="ecommerce-schema-markup.html">E-Commerce Schema Markup: Implement Rich Snippets for Better Rankings</a></h2>
-              <p class="blog-card-excerpt">Master structured data and schema markup for e-commerce. Implement product, review, and pricing schema to earn rich snippets and improve click-through rates.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">SEO Analytics</span>
-              <h2 class="blog-card-title"><a href="seo-analytics-measurement.html">SEO Analytics & Measurement: Track What Matters</a></h2>
-              <p class="blog-card-excerpt">Master SEO analytics to measure success, track performance, and use data to improve your SEO strategy and results.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Technical SEO</span>
-              <h2 class="blog-card-title"><a href="structured-data-schema-advanced.html">Advanced Structured Data & Schema Markup Implementation Guide</a></h2>
-              <p class="blog-card-excerpt">Master schema implementation to enable rich snippets, improve search appearance, and help Google understand your content.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Local SEO</span>
-              <h2 class="blog-card-title"><a href="local-seo-service-businesses.html">Local SEO for Service Businesses: Complete Strategy Guide</a></h2>
-              <p class="blog-card-excerpt">Master local SEO for service businesses with location pages, service area optimization, and proven ranking tactics.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">SEO Best Practices</span>
-              <h2 class="blog-card-title"><a href="seo-mistakes-to-avoid.html">Common SEO Mistakes to Avoid: Protect Your Rankings</a></h2>
-              <p class="blog-card-excerpt">Learn common SEO mistakes that hurt rankings and how to avoid costly pitfalls to protect your search visibility.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">B2B Marketing</span>
-              <h2 class="blog-card-title"><a href="b2b-seo-strategy.html">B2B SEO Strategy: Generate Qualified Leads Through Search</a></h2>
-              <p class="blog-card-excerpt">Master B2B SEO to attract qualified leads from search. Learn strategies for long sales cycles and high-value keyword targeting.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Video SEO</span>
-              <h2 class="blog-card-title"><a href="video-seo-optimization.html">Video SEO Optimization: Rank Videos in Search Results</a></h2>
-              <p class="blog-card-excerpt">Master video SEO to rank videos on YouTube and Google search. Learn optimization techniques and how video boosts overall SEO.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">International SEO</span>
-              <h2 class="blog-card-title"><a href="international-seo-multilingual.html">International SEO & Multilingual Strategy: Rank Globally</a></h2>
-              <p class="blog-card-excerpt">Master international SEO and multilingual optimization. Learn hreflang implementation and strategies to rank in multiple countries.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Content Strategy</span>
-              <h2 class="blog-card-title"><a href="topical-authority-pillar-pages.html">Topical Authority & Pillar Pages: Content Cluster Strategy</a></h2>
-              <p class="blog-card-excerpt">Master topical authority and pillar page strategy. Learn how to establish deep expertise through strategic content clustering.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Search Visibility</span>
-              <h2 class="blog-card-title"><a href="featured-snippets-position-zero.html">Featured Snippets & Position Zero: Rank Above #1</a></h2>
-              <p class="blog-card-excerpt">Master featured snippet optimization to earn position zero rankings and capture Google's featured snippets.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Mobile SEO</span>
-              <h2 class="blog-card-title"><a href="mobile-first-indexing-optimization.html">Mobile First Indexing: Complete Optimization Guide</a></h2>
-              <p class="blog-card-excerpt">Master mobile-first indexing. Learn how Google now indexes the mobile version first and how to optimize for success.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">Nonprofit Marketing</span>
-              <h2 class="blog-card-title"><a href="seo-for-nonprofits.html">SEO for Nonprofits: Free & Low-Cost Strategies</a></h2>
-              <p class="blog-card-excerpt">Master SEO for nonprofits. Learn budget-friendly strategies to increase donations, volunteers, and community awareness.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="blog-card">
-            <div class="blog-card-content">
-              <span class="blog-card-category">SEO & Growth</span>
-              <h2 class="blog-card-title"><a href="seo-cro-conversion-rate.html">SEO & CRO: Merging Search Traffic With Conversions</a></h2>
-              <p class="blog-card-excerpt">Master the integration of SEO and CRO. Learn to optimize organic search traffic for conversions and maximize ROI.</p>
-              <div class="blog-card-meta">
-                <span>Read Article →</span>
-              </div>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="blog-cta-section">
-      <div class="container">
-        <h2>Need Expert SEO Help?</h2>
-        <p>Ready to improve your search rankings? Let's discuss your SEO strategy and goals.</p>
-        <div class="cta-actions">
-          <a class="button button-primary" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-          <a class="button button-secondary" href="../contact.html">Get in Touch</a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      
+      <div class="nav-item">
+        <button class="nav-dropdown-trigger">Services</button>
+        <div class="dropdown-menu">
+          <a href="../services/wordpress-seo.html" class="dropdown-item">WordPress SEO</a>
+          <a href="../services/wix-seo.html" class="dropdown-item">Wix SEO</a>
+          <a href="../services/magento-seo.html" class="dropdown-item">Magento SEO</a>
+          <a href="../services/squarespace-seo.html" class="dropdown-item">Squarespace SEO</a>
+          <a href="../services/shopify-seo.html" class="dropdown-item">Shopify SEO</a>
+          <div class="dropdown-divider"></div>
+          <a href="../services/local-seo.html" class="dropdown-item">Local SEO</a>
+          <a href="../services/technical-seo.html" class="dropdown-item">Technical SEO</a>
+          <a href="../services/index.html" class="dropdown-item">View All →</a>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-column footer-intro">
-        <a class="brand-mark footer-brand" href="../index.html">Jannatul</a>
-        <p>Personal SEO expert support for businesses that want search growth with stronger strategy.</p>
+      <a href="../portfolio/index.html">Portfolio</a>
+      <a href="../case-studies/index.html">Case Studies</a>
+      <a href="../consultants/index.html">Consultants</a>
+      <a href="index.html" style="color: var(--accent);">Blog</a>
+    </div>
+    <a href="../index.html#cta-banner" class="btn-primary">Get Free SEO Audit</a>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <h1 class="section-title">SEO Blog: Expert Tips & Strategies</h1>
+      <p class="section-sub">Comprehensive guides and articles covering WordPress SEO, e-commerce optimization, keyword research, local SEO, technical improvements, and more.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BLOG SECTION ─── -->
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-header">
+      <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 20px;">Explore All Articles</h2>
+      <p style="color: var(--gray-600); margin-bottom: 32px;">Filter by category to find the topics you're interested in.</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="category-filters">
+      <button class="category-filter active" data-category="all">All Articles</button>
+      <button class="category-filter" data-category="keyword-research">Keyword Research</button>
+      <button class="category-filter" data-category="on-page-seo">On-Page SEO</button>
+      <button class="category-filter" data-category="technical-seo">Technical SEO</button>
+      <button class="category-filter" data-category="link-building">Link Building</button>
+      <button class="category-filter" data-category="local-seo">Local SEO</button>
+      <button class="category-filter" data-category="ecommerce-seo">E-Commerce SEO</button>
+      <button class="category-filter" data-category="wordpress-seo">WordPress SEO</button>
+      <button class="category-filter" data-category="shopify-seo">Shopify SEO</button>
+      <button class="category-filter" data-category="content-strategy">Content Strategy</button>
+      <button class="category-filter" data-category="mobile-seo">Mobile & UX</button>
+      <button class="category-filter" data-category="advanced-seo">Advanced SEO</button>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-grid">
+      <!-- Keyword Research Articles -->
+      <a href="keyword-research-guide.html" class="blog-card" data-category="keyword-research">
+        <div class="blog-card-img">Keyword Research</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Keyword Research</div>
+          <h3 class="blog-card-title">Complete Keyword Research Guide for Beginners</h3>
+          <div class="blog-card-meta">May 20, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="long-tail-keyword-research.html" class="blog-card" data-category="keyword-research">
+        <div class="blog-card-img">Long-Tail Keywords</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Keyword Research</div>
+          <h3 class="blog-card-title">Long-Tail Keyword Research Strategies</h3>
+          <div class="blog-card-meta">May 18, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <a href="ecommerce-keyword-research.html" class="blog-card" data-category="keyword-research ecommerce-seo">
+        <div class="blog-card-img">E-Commerce Keywords</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Keyword Research</div>
+          <h3 class="blog-card-title">E-Commerce Keyword Research & Product Optimization</h3>
+          <div class="blog-card-meta">May 15, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <!-- On-Page SEO Articles -->
+      <a href="on-page-seo.html" class="blog-card" data-category="on-page-seo">
+        <div class="blog-card-img">On-Page SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">On-Page SEO</div>
+          <h3 class="blog-card-title">Complete On-Page SEO Guide for 2024</h3>
+          <div class="blog-card-meta">May 12, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="title_tag_meta_optimization.html" class="blog-card" data-category="on-page-seo">
+        <div class="blog-card-img">Title & Meta Tags</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">On-Page SEO</div>
+          <h3 class="blog-card-title">Title Tags & Meta Descriptions: Complete Optimization Guide</h3>
+          <div class="blog-card-meta">May 10, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <a href="internal-linking-strategy.html" class="blog-card" data-category="on-page-seo">
+        <div class="blog-card-img">Internal Linking</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">On-Page SEO</div>
+          <h3 class="blog-card-title">Internal Linking Strategy for Better Rankings</h3>
+          <div class="blog-card-meta">May 8, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <!-- Technical SEO Articles -->
+      <a href="technical-seo-guide.html" class="blog-card" data-category="technical-seo">
+        <div class="blog-card-img">Technical SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Technical SEO</div>
+          <h3 class="blog-card-title">Technical SEO: A Complete Beginner's Guide</h3>
+          <div class="blog-card-meta">May 5, 2026 · 10 min read</div>
+        </div>
+      </a>
+
+      <a href="core-web-vitals.html" class="blog-card" data-category="technical-seo mobile-seo">
+        <div class="blog-card-img">Core Web Vitals</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Technical SEO</div>
+          <h3 class="blog-card-title">Core Web Vitals & Page Experience Optimization</h3>
+          <div class="blog-card-meta">May 3, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="mobile-first-indexing.html" class="blog-card" data-category="technical-seo mobile-seo">
+        <div class="blog-card-img">Mobile First</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Mobile & UX</div>
+          <h3 class="blog-card-title">Mobile-First Indexing: Complete Guide</h3>
+          <div class="blog-card-meta">May 1, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <!-- Link Building Articles -->
+      <a href="white_hat_link_building_guest_posting.html" class="blog-card" data-category="link-building">
+        <div class="blog-card-img">Link Building</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Link Building</div>
+          <h3 class="blog-card-title">White Hat Link Building & Guest Posting Strategies</h3>
+          <div class="blog-card-meta">Apr 28, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="backlink-strategy.html" class="blog-card" data-category="link-building">
+        <div class="blog-card-img">Backlink Strategy</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Link Building</div>
+          <h3 class="blog-card-title">Complete Backlink Strategy for Authority Building</h3>
+          <div class="blog-card-meta">Apr 25, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="ecommerce-backlink-strategy.html" class="blog-card" data-category="link-building ecommerce-seo">
+        <div class="blog-card-img">E-Commerce Backlinks</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Link Building</div>
+          <h3 class="blog-card-title">E-Commerce Backlink Strategy & Link Earning</h3>
+          <div class="blog-card-meta">Apr 22, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <!-- Local SEO Articles -->
+      <a href="local-seo-guide.html" class="blog-card" data-category="local-seo">
+        <div class="blog-card-img">Local SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Local SEO</div>
+          <h3 class="blog-card-title">Local SEO Guide for Small Businesses</h3>
+          <div class="blog-card-meta">Apr 20, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="local-citation-building.html" class="blog-card" data-category="local-seo">
+        <div class="blog-card-img">Local Citations</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Local SEO</div>
+          <h3 class="blog-card-title">Local Citation Building for Map Rankings</h3>
+          <div class="blog-card-meta">Apr 18, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <a href="google-business-profile-optimization.html" class="blog-card" data-category="local-seo">
+        <div class="blog-card-img">Google Business</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Local SEO</div>
+          <h3 class="blog-card-title">Google Business Profile Optimization Guide</h3>
+          <div class="blog-card-meta">Apr 15, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <!-- E-Commerce SEO Articles -->
+      <a href="ecommerce-seo-best-practices.html" class="blog-card" data-category="ecommerce-seo">
+        <div class="blog-card-img">E-Commerce Best Practices</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">E-Commerce SEO</div>
+          <h3 class="blog-card-title">E-Commerce SEO Best Practices & Strategies</h3>
+          <div class="blog-card-meta">Apr 12, 2026 · 10 min read</div>
+        </div>
+      </a>
+
+      <a href="shopify-seo-strategy.html" class="blog-card" data-category="ecommerce-seo shopify-seo">
+        <div class="blog-card-img">Shopify SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Shopify SEO</div>
+          <h3 class="blog-card-title">Shopify SEO Strategy & Product Page Optimization</h3>
+          <div class="blog-card-meta">Apr 10, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="product-page-optimization.html" class="blog-card" data-category="ecommerce-seo">
+        <div class="blog-card-img">Product Pages</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">E-Commerce SEO</div>
+          <h3 class="blog-card-title">E-Commerce Product Page Optimization Guide</h3>
+          <div class="blog-card-meta">Apr 8, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <!-- WordPress SEO Articles -->
+      <a href="wordpress-seo-guide.html" class="blog-card" data-category="wordpress-seo">
+        <div class="blog-card-img">WordPress SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">WordPress SEO</div>
+          <h3 class="blog-card-title">Complete WordPress SEO Guide</h3>
+          <div class="blog-card-meta">Apr 5, 2026 · 9 min read</div>
+        </div>
+      </a>
+
+      <a href="wordpress-seo-checklist.html" class="blog-card" data-category="wordpress-seo">
+        <div class="blog-card-img">WordPress Checklist</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">WordPress SEO</div>
+          <h3 class="blog-card-title">WordPress SEO Checklist 2024</h3>
+          <div class="blog-card-meta">Apr 3, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <a href="wix-seo-optimization.html" class="blog-card" data-category="wordpress-seo">
+        <div class="blog-card-img">Wix SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Platform SEO</div>
+          <h3 class="blog-card-title">Wix SEO Optimization & Best Practices</h3>
+          <div class="blog-card-meta">Mar 31, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <!-- Content Strategy Articles -->
+      <a href="content-marketing-seo-strategy.html" class="blog-card" data-category="content-strategy">
+        <div class="blog-card-img">Content Marketing</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Content Strategy</div>
+          <h3 class="blog-card-title">Content Marketing & SEO Strategy Integration</h3>
+          <div class="blog-card-meta">Mar 28, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="topical-authority-pillar-pages.html" class="blog-card" data-category="content-strategy">
+        <div class="blog-card-img">Topical Authority</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Content Strategy</div>
+          <h3 class="blog-card-title">Topical Authority & Pillar Pages Guide</h3>
+          <div class="blog-card-meta">Mar 25, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="featured-snippets-position-zero.html" class="blog-card" data-category="content-strategy">
+        <div class="blog-card-img">Featured Snippets</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Content Strategy</div>
+          <h3 class="blog-card-title">Featured Snippets & Position Zero Optimization</h3>
+          <div class="blog-card-meta">Mar 22, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <!-- Mobile & UX Articles -->
+      <a href="user-experience-seo.html" class="blog-card" data-category="mobile-seo">
+        <div class="blog-card-img">UX & SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Mobile & UX</div>
+          <h3 class="blog-card-title">User Experience & SEO: Complete Guide</h3>
+          <div class="blog-card-meta">Mar 20, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="page-speed-optimization-seo.html" class="blog-card" data-category="mobile-seo technical-seo">
+        <div class="blog-card-img">Page Speed</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Mobile & UX</div>
+          <h3 class="blog-card-title">Page Speed Optimization for SEO & Rankings</h3>
+          <div class="blog-card-meta">Mar 18, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="voice-search-seo.html" class="blog-card" data-category="mobile-seo">
+        <div class="blog-card-img">Voice Search</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Mobile & UX</div>
+          <h3 class="blog-card-title">Voice Search Optimization Guide</h3>
+          <div class="blog-card-meta">Mar 15, 2026 · 5 min read</div>
+        </div>
+      </a>
+
+      <!-- Advanced SEO Articles -->
+      <a href="schema-markup.html" class="blog-card" data-category="advanced-seo">
+        <div class="blog-card-img">Schema Markup</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Advanced SEO</div>
+          <h3 class="blog-card-title">Schema Markup Implementation Guide</h3>
+          <div class="blog-card-meta">Mar 12, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="seo-analytics-measurement.html" class="blog-card" data-category="advanced-seo">
+        <div class="blog-card-img">SEO Analytics</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Advanced SEO</div>
+          <h3 class="blog-card-title">SEO Analytics & Measurement Guide</h3>
+          <div class="blog-card-meta">Mar 10, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="seo-mistakes-to-avoid.html" class="blog-card" data-category="advanced-seo">
+        <div class="blog-card-img">Common Mistakes</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Advanced SEO</div>
+          <h3 class="blog-card-title">10 Common SEO Mistakes to Avoid in 2024</h3>
+          <div class="blog-card-meta">Mar 8, 2026 · 6 min read</div>
+        </div>
+      </a>
+
+      <!-- More Articles -->
+      <a href="competitor-seo-analysis.html" class="blog-card" data-category="advanced-seo">
+        <div class="blog-card-img">Competitor Analysis</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Advanced SEO</div>
+          <h3 class="blog-card-title">Competitor SEO Analysis & Strategy</h3>
+          <div class="blog-card-meta">Mar 5, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+      <a href="international-seo-multilingual.html" class="blog-card" data-category="advanced-seo">
+        <div class="blog-card-img">International SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Advanced SEO</div>
+          <h3 class="blog-card-title">International SEO & Multilingual Optimization</h3>
+          <div class="blog-card-meta">Mar 3, 2026 · 8 min read</div>
+        </div>
+      </a>
+
+      <a href="off-page-seo.html" class="blog-card" data-category="link-building advanced-seo">
+        <div class="blog-card-img">Off-Page SEO</div>
+        <div class="blog-card-content">
+          <div class="blog-card-category">Link Building</div>
+          <h3 class="blog-card-title">Complete Off-Page SEO Guide</h3>
+          <div class="blog-card-meta">Feb 28, 2026 · 7 min read</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom:12px">
+          <div class="logo-box" style="background:#fff;color:#0a0a0a">Y</div>
+          <div class="logo-text" style="color:#fff">YOUR LOGO <span style="color:#9ca3af">SEO EXPERT</span></div>
+        </div>
+        <p>We help businesses rank higher, drive traffic and achieve success with data-driven SEO strategies.</p>
+        <div class="social-row">
+          <div class="social-btn">f</div>
+          <div class="social-btn">𝕏</div>
+          <div class="social-btn">in</div>
+          <div class="social-btn">▶</div>
+          <div class="social-btn">📸</div>
+        </div>
       </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Quick links</h3>
-        <ul class="footer-list">
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
           <li><a href="../index.html">Home</a></li>
-          <li><a href="index.html">Blog</a></li>
-          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../services/index.html">Services</a></li>
+          <li><a href="../portfolio/index.html">Portfolio</a></li>
+          <li><a href="../case-studies/index.html">Case Studies</a></li>
+          <li><a href="../consultants/index.html">Consultants</a></li>
         </ul>
       </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="../services/wordpress-seo.html">WordPress SEO</a></li>
+          <li><a href="../services/shopify-seo.html">Shopify SEO</a></li>
+          <li><a href="../services/local-seo.html">Local SEO</a></li>
+          <li><a href="../services/technical-seo.html">Technical SEO</a></li>
+          <li><a href="../services/index.html">View All</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="contact-item"><span>📞</span><span>+1 (123) 456-7890</span></div>
+        <div class="contact-item"><span>✉</span><span>info@yourdomain.com</span></div>
+        <div class="contact-item"><span>📍</span><span>123 Street, City, State</span></div>
+        <div class="map-box">📍</div>
+        <br>
+        <a href="../index.html" class="btn-primary" style="width:100%;justify-content:center">Get Free Audit</a>
+      </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <p>© 2024 Your Company. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dropdown menu toggle
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const trigger = item.querySelector('.nav-dropdown-trigger');
+    if (trigger) {
+      trigger.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item')) {
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+    }
+  });
+
+  // Category filter functionality
+  const filters = document.querySelectorAll('.category-filter');
+  const cards = document.querySelectorAll('.blog-card');
+
+  filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+      // Update active filter
+      filters.forEach(f => f.classList.remove('active'));
+      filter.classList.add('active');
+
+      const selectedCategory = filter.getAttribute('data-category');
+
+      // Show/hide cards based on category
+      cards.forEach(card => {
+        if (selectedCategory === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const cardCategories = card.getAttribute('data-category');
+          if (cardCategories.includes(selectedCategory)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+</script>
+
 </body>
 </html>
