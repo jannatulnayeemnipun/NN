@@ -49,6 +49,7 @@
     padding: 10px 20px; border-radius: var(--radius);
     border: none; cursor: pointer; transition: background .2s;
   }
+  button.btn-primary, a.btn-primary { cursor: pointer; }
   .btn-primary:hover { background: var(--accent-dark); }
   .btn-outline {
     display: inline-flex; align-items: center; gap: 6px;
@@ -57,6 +58,7 @@
     padding: 10px 20px; border-radius: var(--radius);
     border: 1.5px solid var(--gray-300); cursor: pointer; transition: border-color .2s;
   }
+  button.btn-outline, a.btn-outline { cursor: pointer; }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ─── NAV ─── */
@@ -220,11 +222,12 @@
   .services-header { text-align: center; margin-bottom: 40px; }
   .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
   .service-card {
-    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
-    padding: 16px; display: flex; flex-direction: column; gap: 6px;
+    display: flex; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 16px; flex-direction: column; gap: 6px;
     transition: box-shadow .2s, border-color .2s; cursor: pointer;
+    color: var(--black);
   }
-  .service-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); border-color: var(--accent); }
+  .service-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); border-color: var(--accent); color: var(--black); }
   .service-top { display: flex; justify-content: space-between; align-items: flex-start; }
   .service-icon { font-size: 20px; }
   .service-num { font-size: 11px; font-weight: 700; color: var(--gray-300); }
@@ -236,10 +239,11 @@
   .consultants-header { text-align: center; margin-bottom: 40px; }
   .consultants-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
   .consultant-card {
-    border: 1px solid var(--gray-200); border-radius: var(--radius);
+    display: block; border: 1px solid var(--gray-200); border-radius: var(--radius);
     padding: 20px; text-align: center; transition: box-shadow .2s;
+    color: var(--black);
   }
-  .consultant-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+  .consultant-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); color: var(--black); }
   .consultant-avatar {
     width: 48px; height: 48px; background: var(--gray-100); border-radius: 50%;
     margin: 0 auto 12px; border: 1px solid var(--gray-200); display: grid; place-items: center; font-size: 20px;
@@ -261,8 +265,10 @@
   .tab:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
   .portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
   .portfolio-card {
-    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden;
+    display: block; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden;
+    color: var(--black);
   }
+  .portfolio-card:hover { color: var(--black); }
   .portfolio-img { background: var(--gray-100); height: 120px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-400); }
   .portfolio-body { padding: 12px; }
   .portfolio-tag { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
@@ -277,10 +283,11 @@
   .case-studies-header { text-align: center; margin-bottom: 32px; }
   .case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
   .case-card {
-    border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px;
-    display: flex; flex-direction: column; gap: 8px; transition: box-shadow .2s;
+    display: flex; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px;
+    flex-direction: column; gap: 8px; transition: box-shadow .2s;
+    color: var(--black);
   }
-  .case-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); }
+  .case-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); color: var(--black); }
   .case-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
   .case-card h3 { font-size: 13px; font-weight: 700; line-height: 1.4; }
   .case-metrics { display: flex; gap: 8px; }
@@ -396,19 +403,48 @@
     </div>
     <div class="nav-links">
       <a href="#home">Home</a>
-      
+
       <div class="nav-item">
         <button class="nav-dropdown-trigger">Services</button>
         <div class="dropdown-menu">
-          <a href="#services" class="dropdown-item">WordPress SEO</a>
-          <a href="#services" class="dropdown-item">Wix SEO</a>
-          <a href="#services" class="dropdown-item">Magento SEO</a>
-          <a href="#services" class="dropdown-item">Squarespace SEO</a>
-          <a href="#services" class="dropdown-item">Shopify SEO</a>
+          <a href="services/wordpress-seo.html" class="dropdown-item">WordPress SEO</a>
+          <a href="services/wix-seo.html" class="dropdown-item">Wix SEO</a>
+          <a href="services/magento-seo.html" class="dropdown-item">Magento SEO</a>
+          <a href="services/squarespace-seo.html" class="dropdown-item">Squarespace SEO</a>
+          <a href="services/shopify-seo.html" class="dropdown-item">Shopify SEO</a>
+          <a href="services/ecommerce-seo.html" class="dropdown-item">E-commerce SEO</a>
+          <a href="services/big-ecommerce-seo.html" class="dropdown-item">Big E-commerce SEO</a>
           <div class="dropdown-divider"></div>
-          <a href="#services" class="dropdown-item">Local SEO</a>
-          <a href="#services" class="dropdown-item">Technical SEO</a>
-          <a href="#services" class="dropdown-item">View All →</a>
+          <a href="services/local-seo.html" class="dropdown-item">Local SEO</a>
+          <a href="services/on-page-seo.html" class="dropdown-item">On-Page SEO</a>
+          <a href="services/off-page-seo.html" class="dropdown-item">Off-Page SEO</a>
+          <a href="services/technical-seo.html" class="dropdown-item">Technical SEO</a>
+          <div class="dropdown-divider"></div>
+          <a href="services/keyword-research.html" class="dropdown-item">Keyword Research</a>
+          <a href="services/competitor-analysis.html" class="dropdown-item">Competitor Analysis</a>
+          <a href="services/website-audit.html" class="dropdown-item">Website Audit</a>
+          <a href="services/google-ads.html" class="dropdown-item">Google Ads</a>
+          <a href="services/youtube-seo.html" class="dropdown-item">YouTube SEO</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-dropdown-trigger">Service Areas</button>
+        <div class="dropdown-menu">
+          <a href="service-areas/usa/index.html" class="dropdown-item">United States</a>
+          <a href="service-areas/uk/index.html" class="dropdown-item">United Kingdom</a>
+          <a href="service-areas/canada/index.html" class="dropdown-item">Canada</a>
+          <a href="service-areas/australia/index.html" class="dropdown-item">Australia</a>
+          <div class="dropdown-divider"></div>
+          <a href="service-areas/germany/index.html" class="dropdown-item">Germany</a>
+          <a href="service-areas/netherlands/index.html" class="dropdown-item">Netherlands</a>
+          <a href="service-areas/switzerland/index.html" class="dropdown-item">Switzerland</a>
+          <a href="service-areas/sweden/index.html" class="dropdown-item">Sweden</a>
+          <a href="service-areas/norway/index.html" class="dropdown-item">Norway</a>
+          <div class="dropdown-divider"></div>
+          <a href="service-areas/ireland/index.html" class="dropdown-item">Ireland</a>
+          <a href="service-areas/new-zealand/index.html" class="dropdown-item">New Zealand</a>
+          <a href="service-areas/singapore/index.html" class="dropdown-item">Singapore</a>
         </div>
       </div>
 
@@ -418,15 +454,24 @@
       <div class="nav-item">
         <button class="nav-dropdown-trigger">Consultant Pages</button>
         <div class="dropdown-menu">
-          <a href="#consultants" class="dropdown-item">CMS Consultant</a>
-          <a href="#consultants" class="dropdown-item">E-commerce Consultant</a>
-          <a href="#consultants" class="dropdown-item">Local SEO Consultant</a>
-          <a href="#consultants" class="dropdown-item">YouTube SEO Consultant</a>
+          <a href="consultants/wordpress-seo-consultant.html" class="dropdown-item">WordPress SEO Consultant</a>
+          <a href="consultants/wix-seo-consultant.html" class="dropdown-item">Wix SEO Consultant</a>
+          <a href="consultants/magento-seo-consultant.html" class="dropdown-item">Magento SEO Consultant</a>
+          <a href="consultants/squarespace-seo-consultant.html" class="dropdown-item">Squarespace SEO Consultant</a>
+          <a href="consultants/shopify-seo-consultant.html" class="dropdown-item">Shopify SEO Consultant</a>
+          <div class="dropdown-divider"></div>
+          <a href="consultants/ecommerce-seo-consultant.html" class="dropdown-item">E-commerce SEO Consultant</a>
+          <a href="consultants/big-ecommerce-seo-consultant.html" class="dropdown-item">Big E-commerce Consultant</a>
+          <a href="consultants/walmart-seo-consultant.html" class="dropdown-item">Walmart SEO Consultant</a>
+          <div class="dropdown-divider"></div>
+          <a href="consultants/local-seo-consultant.html" class="dropdown-item">Local SEO Consultant</a>
+          <a href="consultants/youtube-seo-consultant.html" class="dropdown-item">YouTube SEO Consultant</a>
         </div>
       </div>
 
-      <a href="#blog">Blog</a>
-      <a href="#faq">FAQ</a>
+      <a href="portfolio/index.html">Portfolio</a>
+      <a href="case-studies/index.html">Case Studies</a>
+      <a href="blog/index.html">Blog</a>
     </div>
     <button class="btn-primary">Get Free SEO Audit</button>
   </div>
@@ -570,24 +615,24 @@
       <p class="section-sub">End-to-end SEO solutions tailored to improve rankings, traffic and conversions.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card"><div class="service-top"><div class="service-icon">⚡</div><div class="service-num">01</div></div><h3>WordPress SEO</h3><p>Optimize WordPress websites for higher rankings and better performance.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🌐</div><div class="service-num">02</div></div><h3>Wix SEO</h3><p>Improve Wix website visibility and drive organic traffic.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🔶</div><div class="service-num">03</div></div><h3>Magento SEO</h3><p>Boost Magento store rankings and increase conversions.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">⬡</div><div class="service-num">04</div></div><h3>Squarespace SEO</h3><p>Enhance Squarespace website SEO and grow your audience.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🛍</div><div class="service-num">05</div></div><h3>Shopify SEO</h3><p>Optimize Shopify stores to rank higher and sell more.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🏪</div><div class="service-num">06</div></div><h3>Walmart SEO</h3><p>Optimize Walmart store listings to rank higher and increase sales.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🛒</div><div class="service-num">07</div></div><h3>Big-ecommerce SEO</h3><p>Improve Big-ecommerce store SEO for more traffic and sales.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">📍</div><div class="service-num">08</div></div><h3>Local SEO</h3><p>Rank higher in local search results and attract nearby customers.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">📄</div><div class="service-num">09</div></div><h3>On page SEO</h3><p>Optimize pages for better rankings and user experience.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🔗</div><div class="service-num">10</div></div><h3>Off page SEO</h3><p>Build authority with quality backlinks and outreach.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">⚙️</div><div class="service-num">11</div></div><h3>Technical SEO</h3><p>Fix technical issues and improve website health for search engines.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🔍</div><div class="service-num">12</div></div><h3>Keyword research</h3><p>Find high-value keywords that drive qualified traffic.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">📊</div><div class="service-num">13</div></div><h3>Competitor analysis</h3><p>Analyze competitors and find opportunities to rank ahead.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">🔎</div><div class="service-num">14</div></div><h3>Website audit</h3><p>Identify and fix SEO issues to improve performance.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">📈</div><div class="service-num">15</div></div><h3>Google ads</h3><p>Run targeted Google Ads campaigns to get more leads and sales.</p></div>
-      <div class="service-card"><div class="service-top"><div class="service-icon">▶️</div><div class="service-num">16</div></div><h3>YouTube SEO</h3><p>Optimize YouTube videos to rank higher and get more views.</p></div>
+      <a href="services/wordpress-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⚡</div><div class="service-num">01</div></div><h3>WordPress SEO</h3><p>Optimize WordPress websites for higher rankings and better performance.</p></a>
+      <a href="services/wix-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🌐</div><div class="service-num">02</div></div><h3>Wix SEO</h3><p>Improve Wix website visibility and drive organic traffic.</p></a>
+      <a href="services/magento-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🔶</div><div class="service-num">03</div></div><h3>Magento SEO</h3><p>Boost Magento store rankings and increase conversions.</p></a>
+      <a href="services/squarespace-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⬡</div><div class="service-num">04</div></div><h3>Squarespace SEO</h3><p>Enhance Squarespace website SEO and grow your audience.</p></a>
+      <a href="services/shopify-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🛍</div><div class="service-num">05</div></div><h3>Shopify SEO</h3><p>Optimize Shopify stores to rank higher and sell more.</p></a>
+      <a href="services/ecommerce-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🏪</div><div class="service-num">06</div></div><h3>E-commerce SEO</h3><p>Improve E-commerce store SEO for more traffic and sales.</p></a>
+      <a href="services/big-ecommerce-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🛒</div><div class="service-num">07</div></div><h3>Big E-commerce SEO</h3><p>Improve Big-ecommerce store SEO for more traffic and sales.</p></a>
+      <a href="services/local-seo.html" class="service-card"><div class="service-top"><div class="service-icon">📍</div><div class="service-num">08</div></div><h3>Local SEO</h3><p>Rank higher in local search results and attract nearby customers.</p></a>
+      <a href="services/on-page-seo.html" class="service-card"><div class="service-top"><div class="service-icon">📄</div><div class="service-num">09</div></div><h3>On-Page SEO</h3><p>Optimize pages for better rankings and user experience.</p></a>
+      <a href="services/off-page-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🔗</div><div class="service-num">10</div></div><h3>Off-Page SEO</h3><p>Build authority with quality backlinks and outreach.</p></a>
+      <a href="services/technical-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⚙️</div><div class="service-num">11</div></div><h3>Technical SEO</h3><p>Fix technical issues and improve website health for search engines.</p></a>
+      <a href="services/keyword-research.html" class="service-card"><div class="service-top"><div class="service-icon">🔍</div><div class="service-num">12</div></div><h3>Keyword Research</h3><p>Find high-value keywords that drive qualified traffic.</p></a>
+      <a href="services/competitor-analysis.html" class="service-card"><div class="service-top"><div class="service-icon">📊</div><div class="service-num">13</div></div><h3>Competitor Analysis</h3><p>Analyze competitors and find opportunities to rank ahead.</p></a>
+      <a href="services/website-audit.html" class="service-card"><div class="service-top"><div class="service-icon">🔎</div><div class="service-num">14</div></div><h3>Website Audit</h3><p>Identify and fix SEO issues to improve performance.</p></a>
+      <a href="services/google-ads.html" class="service-card"><div class="service-top"><div class="service-icon">📈</div><div class="service-num">15</div></div><h3>Google Ads</h3><p>Run targeted Google Ads campaigns to get more leads and sales.</p></a>
+      <a href="services/youtube-seo.html" class="service-card"><div class="service-top"><div class="service-icon">▶️</div><div class="service-num">16</div></div><h3>YouTube SEO</h3><p>Optimize YouTube videos to rank higher and get more views.</p></a>
     </div>
-    <div class="center-btn"><button class="btn-outline">View All Services</button></div>
+    <div class="center-btn"><a href="services/index.html" class="btn-outline">View All Services</a></div>
   </div>
 </section>
 
@@ -600,32 +645,32 @@
       <p class="section-sub">Learn from our experts and gain in-depth SEO insights.</p>
     </div>
     <div class="consultants-grid">
-      <div class="consultant-card">
+      <a href="consultants/wordpress-seo-consultant.html" class="consultant-card">
         <div class="consultant-avatar">👤</div>
-        <h3>CMS consultant</h3>
-        <p>Strategy, audits & growth consultation.</p>
-        <a href="#" class="view-link">View Page →</a>
-      </div>
-      <div class="consultant-card">
+        <h3>WordPress SEO Consultant</h3>
+        <p>CMS strategy, audits & growth consultation.</p>
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/ecommerce-seo-consultant.html" class="consultant-card">
         <div class="consultant-avatar">👤</div>
-        <h3>E-commerce consultant</h3>
+        <h3>E-commerce SEO Consultant</h3>
         <p>Technical audits, fixes & website performance.</p>
-        <a href="#" class="view-link">View Page →</a>
-      </div>
-      <div class="consultant-card">
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/local-seo-consultant.html" class="consultant-card">
         <div class="consultant-avatar">👤</div>
-        <h3>Local SEO consultant</h3>
+        <h3>Local SEO Consultant</h3>
         <p>Local ranking, Google Maps & business growth.</p>
-        <a href="#" class="view-link">View Page →</a>
-      </div>
-      <div class="consultant-card">
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/youtube-seo-consultant.html" class="consultant-card">
         <div class="consultant-avatar">👤</div>
-        <h3>YouTube SEO consultant</h3>
+        <h3>YouTube SEO Consultant</h3>
         <p>YouTube growth, content optimization & ranking.</p>
-        <a href="#" class="view-link">View Page →</a>
-      </div>
+        <span class="view-link">View Page →</span>
+      </a>
     </div>
-    <div class="center-btn"><button class="btn-outline">Explore All Consultant Pages</button></div>
+    <div class="center-btn"><a href="consultants/index.html" class="btn-outline">Explore All Consultant Pages</a></div>
   </div>
 </section>
 
@@ -646,12 +691,12 @@
       <button class="tab">Real Estate</button>
     </div>
     <div class="portfolio-grid">
-      <div class="portfolio-card"><div class="portfolio-img">E-Commerce</div><div class="portfolio-body"><div class="portfolio-tag">E-Commerce</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><a href="#" class="portfolio-link">View Project →</a></div></div>
-      <div class="portfolio-card"><div class="portfolio-img">Local Business</div><div class="portfolio-body"><div class="portfolio-tag">Local Business</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><a href="#" class="portfolio-link">View Project →</a></div></div>
-      <div class="portfolio-card"><div class="portfolio-img">SaaS</div><div class="portfolio-body"><div class="portfolio-tag">SaaS</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><a href="#" class="portfolio-link">View Project →</a></div></div>
-      <div class="portfolio-card"><div class="portfolio-img">Healthcare</div><div class="portfolio-body"><div class="portfolio-tag">Healthcare</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><a href="#" class="portfolio-link">View Project →</a></div></div>
+      <a href="portfolio/ecommerce-seo/index.html" class="portfolio-card"><div class="portfolio-img">E-Commerce</div><div class="portfolio-body"><div class="portfolio-tag">E-Commerce</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/local-seo/index.html" class="portfolio-card"><div class="portfolio-img">Local Business</div><div class="portfolio-body"><div class="portfolio-tag">Local Business</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/technical-seo/index.html" class="portfolio-card"><div class="portfolio-img">SaaS</div><div class="portfolio-body"><div class="portfolio-tag">SaaS</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/wordpress-seo/index.html" class="portfolio-card"><div class="portfolio-img">Healthcare</div><div class="portfolio-body"><div class="portfolio-tag">Healthcare</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
     </div>
-    <div class="center-btn"><button class="btn-outline">View All Portfolio</button></div>
+    <div class="center-btn"><a href="portfolio/index.html" class="btn-outline">View All Portfolio</a></div>
   </div>
 </section>
 
@@ -671,12 +716,12 @@
       <button class="tab">Link Building</button>
     </div>
     <div class="case-grid">
-      <div class="case-card"><div class="case-tag">E-Commerce</div><h3>How We Increased Organic Traffic by 220% for an E-Commerce Store</h3><div class="case-metrics"><span class="metric">220% Traffic</span><span class="metric">180% Rankings</span></div><a href="#" class="case-link">Read Case Study →</a></div>
-      <div class="case-card"><div class="case-tag">Local Business</div><h3>How Local SEO Helped a Business Rank #1 in Google Maps</h3><div class="case-metrics"><span class="metric">250% Calls</span><span class="metric">130% Traffic</span></div><a href="#" class="case-link">Read Case Study →</a></div>
-      <div class="case-card"><div class="case-tag">Technical SEO</div><h3>Technical SEO Fixes That Improved Site Health by 300%</h3><div class="case-metrics"><span class="metric">300% Site Health</span><span class="metric">170% Traffic</span></div><a href="#" class="case-link">Read Case Study →</a></div>
-      <div class="case-card"><div class="case-tag">Content Marketing</div><h3>Content Strategy That Generated 5X More Organic Leads</h3><div class="case-metrics"><span class="metric">500% Leads</span><span class="metric">200% Traffic</span></div><a href="#" class="case-link">Read Case Study →</a></div>
+      <a href="case-studies/ecommerce-clothing-store.html" class="case-card"><div class="case-tag">E-Commerce</div><h3>How We Increased Organic Traffic by 220% for an E-Commerce Store</h3><div class="case-metrics"><span class="metric">220% Traffic</span><span class="metric">180% Rankings</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/local-hvac-service.html" class="case-card"><div class="case-tag">Local Business</div><h3>How Local SEO Helped a Business Rank #1 in Google Maps</h3><div class="case-metrics"><span class="metric">250% Calls</span><span class="metric">130% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/website-audit-recovery.html" class="case-card"><div class="case-tag">Technical SEO</div><h3>Technical SEO Fixes That Improved Site Health by 300%</h3><div class="case-metrics"><span class="metric">300% Site Health</span><span class="metric">170% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/content-marketing-roi.html" class="case-card"><div class="case-tag">Content Marketing</div><h3>Content Strategy That Generated 5X More Organic Leads</h3><div class="case-metrics"><span class="metric">500% Leads</span><span class="metric">200% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
     </div>
-    <div class="center-btn"><button class="btn-outline">View All Case Studies</button></div>
+    <div class="center-btn"><a href="case-studies/index.html" class="btn-outline">View All Case Studies</a></div>
   </div>
 </section>
 
@@ -696,7 +741,7 @@
           <div class="topic-item">Local SEO Tips &amp; Guides</div>
         </div>
         <br>
-        <button class="btn-outline">Read All Articles</button>
+        <a href="blog/index.html" class="btn-outline">Read All Articles</a>
       </div>
       <div class="blog-right">
         <div class="blog-cards-wrap">
