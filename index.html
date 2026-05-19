@@ -1,2025 +1,974 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jannatul | SEO Expert Helping You Rank Higher & Get More Traffic</title>
-  <meta name="description" content="Jannatul is a personal SEO expert brand focused on ranking growth, keyword strategy, competitor insights, and reporting clarity across WordPress, Shopify, Wix, Squarespace, Magento, YouTube, and local SEO.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script type="module" src="script.js" defer></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SEO Expert – Rank Higher. Get Found. Grow Faster.</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-light: #eff6ff;
+    --star: #f59e0b;
+    --radius: 8px;
+    --font-head: 'Manrope', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--black); background: var(--white); font-size: 14px; line-height: 1.6; }
+
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* ─── UTILITIES ─── */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .section-title { font-family: var(--font-head); font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--black); margin-bottom: 8px; }
+  .section-sub { font-size: 14px; color: var(--gray-600); max-width: 560px; margin: 0 auto; }
+  .text-center { text-align: center; }
+  .stars { color: var(--star); letter-spacing: 2px; font-size: 14px; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent); color: #fff;
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: var(--radius);
+    border: none; cursor: pointer; transition: background .2s;
+  }
+  button.btn-primary, a.btn-primary { cursor: pointer; }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; color: var(--black);
+    font-family: var(--font-body); font-size: 13px; font-weight: 600;
+    padding: 10px 20px; border-radius: var(--radius);
+    border: 1.5px solid var(--gray-300); cursor: pointer; transition: border-color .2s;
+  }
+  button.btn-outline, a.btn-outline { cursor: pointer; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-bottom: 1px solid var(--gray-200);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 8px; }
+  .nav-logo .logo-box {
+    width: 32px; height: 32px; background: var(--black); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 10px; font-weight: 800; font-family: var(--font-head);
+  }
+  .nav-logo .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 13px; line-height: 1.1; }
+  .nav-logo .logo-text span { display: block; font-size: 10px; font-weight: 500; color: var(--gray-600); }
+
+  .nav-links { display: flex; align-items: center; gap: 24px; position: relative; }
+  .nav-links a { font-size: 13px; color: var(--gray-700); font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── DROPDOWN STYLES ─── */
+  .nav-item { position: relative; display: inline-block; }
+  .nav-dropdown-trigger {
+    background: none; border: none; font-size: 13px; font-weight: 500;
+    color: var(--gray-700); cursor: pointer; padding: 0; display: flex;
+    align-items: center; gap: 4px; transition: color .2s;
+  }
+  .nav-dropdown-trigger:hover { color: var(--accent); }
+  .nav-dropdown-trigger::after {
+    content: '▾'; font-size: 10px; transition: transform .2s;
+  }
+  .nav-item.open .nav-dropdown-trigger::after {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    min-width: 280px; display: none; flex-direction: column;
+    padding: 8px 0; z-index: 101;
+  }
+  .nav-item.open .dropdown-menu { display: flex; }
+
+  .dropdown-item {
+    display: block; padding: 10px 16px; font-size: 13px; color: var(--gray-700);
+    transition: background .2s, color .2s;
+  }
+  .dropdown-item:hover { background: var(--gray-50); color: var(--accent); }
+  .dropdown-divider { height: 1px; background: var(--gray-100); margin: 4px 0; }
+
+  /* ─── HERO ─── */
+  .hero { padding: 64px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .hero h1 { font-family: var(--font-head); font-size: clamp(32px, 4.5vw, 52px); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
+  .hero-sub { font-size: 15px; color: var(--gray-600); max-width: 420px; margin-bottom: 28px; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+  .badge { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; color: var(--gray-700); }
+  .badge svg { color: var(--accent); }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+  .hero-rating { display: flex; align-items: center; gap: 8px; }
+  .google-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--gray-200); display: grid; place-items: center; font-size: 9px; font-weight: 700; }
+  .hero-rating .stars { font-size: 13px; }
+  .hero-rating span { font-size: 12px; color: var(--gray-600); }
+
+  .video-card {
+    background: var(--gray-100); border-radius: 12px;
+    aspect-ratio: 16/9; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    position: relative; overflow: hidden; cursor: pointer; border: 2px solid var(--gray-200);
+  }
+  .play-btn {
+    width: 56px; height: 56px; background: #fff;
+    border-radius: 50%; display: grid; place-items: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12); font-size: 20px;
+  }
+  .video-card p { font-size: 12px; color: var(--gray-600); font-weight: 500; }
+
+  /* ─── REVIEWS ─── */
+  .reviews { padding: 56px 0; background: var(--gray-50); }
+  .reviews-header { text-align: center; margin-bottom: 36px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 28px; }
+  .review-card {
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 16px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .reviewer { display: flex; align-items: center; gap: 8px; }
+  .reviewer-avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--gray-200);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+  .reviewer-info .name { font-size: 13px; font-weight: 600; }
+  .reviewer-info .time { font-size: 11px; color: var(--gray-400); }
+  .g-badge { margin-left: auto; font-size: 11px; font-weight: 700; color: #4285f4; background: #e8f0fe; border-radius: 3px; padding: 2px 5px; }
+  .review-text { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
+  .view-all-btn { display: flex; justify-content: center; }
+  .btn-google {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1.5px solid var(--gray-200); border-radius: var(--radius);
+    padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+    background: #fff; transition: border-color .2s;
+  }
+  .btn-google:hover { border-color: var(--accent); }
+
+  /* ─── CREDENTIALS ─── */
+  .credentials { padding: 56px 0; }
+  .cred-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .cred-video {
+    background: var(--gray-100); border-radius: 12px;
+    aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid var(--gray-200);
+  }
+  .cred-content .section-label { margin-bottom: 10px; }
+  .cred-content h2 { margin-bottom: 12px; }
+  .cred-content p { color: var(--gray-600); font-size: 14px; margin-bottom: 24px; }
+  .cert-logos { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+  .cert-logo {
+    width: 72px; height: 40px; background: var(--gray-100); border-radius: 6px;
+    border: 1px solid var(--gray-200); cursor: pointer; position: relative;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: var(--gray-400);
+  }
+  .cert-logo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba(37,99,235,.18);
+    border-color: var(--accent);
+    z-index: 2;
+  }
+  .cert-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .cert-overlay.active { display: flex; }
+  .cert-big {
+    background: #fff; border-radius: 16px; padding: 40px 56px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    animation: popIn .22s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes popIn { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .cert-big-logo {
+    width: 220px; height: 120px; background: var(--gray-100); border-radius: 10px;
+    border: 1.5px solid var(--gray-200); display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--gray-500);
+  }
+  .cert-big-name { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: var(--black); }
+  .cert-big-close {
+    margin-top: 4px; font-size: 12px; font-weight: 600; color: var(--accent);
+    cursor: pointer; background: none; border: none; font-family: var(--font-body);
+  }
+  .cert-big-close:hover { text-decoration: underline; }
+  .cred-caption { font-size: 11px; color: var(--gray-400); margin-top: 8px; }
+
+  /* ─── SERVICES ─── */
+  .services { padding: 64px 0; background: var(--gray-50); }
+  .services-header { text-align: center; margin-bottom: 40px; }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .service-card {
+    display: flex; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 16px; flex-direction: column; gap: 6px;
+    transition: box-shadow .2s, border-color .2s; cursor: pointer;
+    color: var(--black);
+  }
+  .service-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); border-color: var(--accent); color: var(--black); }
+  .service-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .service-icon { font-size: 20px; }
+  .service-num { font-size: 11px; font-weight: 700; color: var(--gray-300); }
+  .service-card h3 { font-size: 13px; font-weight: 700; font-family: var(--font-head); }
+  .service-card p { font-size: 11px; color: var(--gray-600); line-height: 1.5; }
+
+  /* ─── CONSULTANTS ─── */
+  .consultants { padding: 64px 0; }
+  .consultants-header { text-align: center; margin-bottom: 40px; }
+  .consultants-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+  .consultant-card {
+    display: block; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 20px; text-align: center; transition: box-shadow .2s;
+    color: var(--black);
+  }
+  .consultant-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.06); color: var(--black); }
+  .consultant-avatar {
+    width: 48px; height: 48px; background: var(--gray-100); border-radius: 50%;
+    margin: 0 auto 12px; border: 1px solid var(--gray-200); display: grid; place-items: center; font-size: 20px;
+  }
+  .consultant-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .consultant-card p { font-size: 11px; color: var(--gray-600); margin-bottom: 12px; }
+  .view-link { font-size: 12px; color: var(--accent); font-weight: 600; }
+  .view-link:hover { text-decoration: underline; }
+
+  /* ─── PORTFOLIO ─── */
+  .portfolio { padding: 64px 0; background: var(--gray-50); }
+  .portfolio-header { text-align: center; margin-bottom: 32px; }
+  .portfolio-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 32px; flex-wrap: wrap; }
+  .tab {
+    padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    border: 1.5px solid var(--gray-200); background: #fff; cursor: pointer; transition: all .2s;
+  }
+  .tab.active { background: var(--black); color: #fff; border-color: var(--black); }
+  .tab:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .portfolio-card {
+    display: block; background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden;
+    color: var(--black);
+  }
+  .portfolio-card:hover { color: var(--black); }
+  .portfolio-img { background: var(--gray-100); height: 120px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--gray-400); }
+  .portfolio-body { padding: 12px; }
+  .portfolio-tag { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .portfolio-body h3 { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .portfolio-stats { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .portfolio-stats span { font-size: 11px; color: var(--gray-600); }
+  .portfolio-stats span::before { content: '+ '; color: #16a34a; font-weight: 600; }
+  .portfolio-link { font-size: 11px; font-weight: 600; color: var(--accent); }
+
+  /* ─── CASE STUDIES ─── */
+  .case-studies { padding: 64px 0; }
+  .case-studies-header { text-align: center; margin-bottom: 32px; }
+  .case-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .case-card {
+    display: flex; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 16px;
+    flex-direction: column; gap: 8px; transition: box-shadow .2s;
+    color: var(--black);
+  }
+  .case-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.07); color: var(--black); }
+  .case-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+  .case-card h3 { font-size: 13px; font-weight: 700; line-height: 1.4; }
+  .case-metrics { display: flex; gap: 8px; }
+  .metric { background: var(--accent-light); border-radius: 4px; padding: 4px 8px; font-size: 11px; font-weight: 600; color: var(--accent); }
+  .case-link { font-size: 12px; color: var(--accent); font-weight: 600; margin-top: auto; }
+
+  /* ─── BLOG ─── */
+  .blog { padding: 64px 0; background: var(--gray-50); }
+  .blog-inner { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+  .blog-left h2 { font-family: var(--font-head); font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+  .blog-left p { font-size: 13px; color: var(--gray-600); margin-bottom: 20px; }
+  .topic-list { display: flex; flex-direction: column; gap: 6px; }
+  .topic-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--gray-700); }
+  .topic-item::before { content: '○'; color: var(--accent); font-size: 10px; }
+
+  .blog-right { position: relative; }
+  .blog-cards-wrap { overflow: hidden; }
+  .blog-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .blog-card {
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: box-shadow .2s;
+  }
+  .blog-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .blog-thumb { width: 100%; height: 110px; background: var(--gray-100); flex-shrink: 0; border-bottom: 1px solid var(--gray-200); }
+  .blog-body { padding: 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .blog-cat { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
+  .blog-card h3 { font-size: 12px; font-weight: 700; line-height: 1.4; }
+  .blog-meta { font-size: 11px; color: var(--gray-400); margin-top: auto; padding-top: 6px; }
+
+  .blog-arrows {
+    position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .blog-arrow {
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 1.5px solid var(--gray-200); background: #fff;
+    display: grid; place-items: center; cursor: pointer; font-size: 12px;
+    transition: border-color .2s, color .2s;
+  }
+  .blog-arrow:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── FAQ ─── */
+  .faq { padding: 64px 0; }
+  .faq h2 { font-family: var(--font-head); font-size: clamp(22px,3vw,32px); font-weight: 800; text-align: left; margin-bottom: 32px; }
+  .faq-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .faq-item { border: 1px solid var(--gray-200); border-radius: var(--radius); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+    user-select: none;
+  }
+  .faq-q .icon { font-size: 16px; color: var(--gray-400); transition: transform .2s; }
+  .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+  .faq-a { display: none; padding: 0 16px 14px; font-size: 12px; color: var(--gray-600); line-height: 1.6; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner { background: var(--gray-50); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 40px 0; }
+  .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .cta-text { display: flex; align-items: center; gap: 12px; }
+  .cta-icon { font-size: 28px; }
+  .cta-text h3 { font-family: var(--font-head); font-size: 20px; font-weight: 800; }
+  .cta-text p { font-size: 13px; color: var(--gray-600); }
+  .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--black); color: #fff; padding: 48px 0 24px; }
+  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand .logo-box { background: #fff; color: var(--black); margin-bottom: 12px; }
+  .footer-brand p { font-size: 12px; color: #9ca3af; line-height: 1.6; margin-bottom: 16px; }
+  .social-row { display: flex; gap: 8px; }
+  .social-btn { width: 28px; height: 28px; border-radius: 50%; background: #374151; display: grid; place-items: center; font-size: 11px; cursor: pointer; transition: background .2s; }
+  .social-btn:hover { background: var(--accent); }
+  .footer-col h4 { font-size: 12px; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .08em; color: #9ca3af; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .footer-col ul li a { font-size: 12px; color: #d1d5db; transition: color .2s; }
+  .footer-col ul li a:hover { color: #fff; }
+  .contact-item { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: #d1d5db; margin-bottom: 6px; }
+  .contact-item span:first-child { color: #9ca3af; margin-top: 1px; }
+  .map-box { background: #374151; border-radius: var(--radius); height: 80px; display: grid; place-items: center; font-size: 20px; margin-top: 8px; }
+  .footer-bottom { border-top: 1px solid #374151; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 11px; color: #6b7280; }
+  .footer-bottom-links { display: flex; gap: 16px; }
+  .footer-bottom-links a { font-size: 11px; color: #6b7280; transition: color .2s; }
+  .footer-bottom-links a:hover { color: #fff; }
+
+  .center-btn { display: flex; justify-content: center; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .cred-grid, .blog-inner, .footer-grid { grid-template-columns: 1fr; }
+    .reviews-grid, .services-grid, .consultants-grid, .portfolio-grid, .case-grid { grid-template-columns: repeat(2,1fr); }
+    .faq-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .blog-cards { grid-template-columns: 1fr 1fr; }
+    .blog-arrows { display: none; }
+  }
+  @media (max-width: 540px) {
+    .reviews-grid, .services-grid, .consultants-grid, .portfolio-grid, .case-grid { grid-template-columns: 1fr; }
+    .blog-cards { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
-<body class="site-shell">
-  <div class="page-aura page-aura-left"></div>
-  <div class="page-aura page-aura-right"></div>
+<body>
 
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand-mark" href="index.html" aria-label="Jannatul home"><img src="https://cdn.builder.io/api/v1/image/assets%2Fa2c3e1a683ea4f22ae97dfe6e0dc5549%2F256331e95c7940f3a76d58863c23333c?format=webp&width=800&height=1200" alt="Jannatul Logo" class="brand-logo"></a>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-line"></span>
-        <span class="menu-toggle-label">Menu</span>
-      </button>
-
-      <nav class="site-navigation" id="site-navigation" aria-label="Primary navigation">
-        <ul class="navigation-list">
-          <li class="navigation-item"><a class="navigation-link is-current" href="index.html">Home</a></li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Services</button>
-            <div class="dropdown-panel dropdown-panel-services">
-              <a class="dropdown-entry" href="contact.html?service=WordPress%20SEO">
-                <span class="dropdown-entry-title">WordPress SEO</span>
-                <span class="dropdown-entry-copy">Improve technical structure and content visibility for WordPress sites.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Wix%20SEO">
-                <span class="dropdown-entry-title">Wix SEO</span>
-                <span class="dropdown-entry-copy">Align Wix site structure and content with search-driven growth goals.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Magento%20SEO">
-                <span class="dropdown-entry-title">Magento SEO</span>
-                <span class="dropdown-entry-copy">Support large e-commerce catalogs with scalable optimization priorities.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Squarespace%20SEO">
-                <span class="dropdown-entry-title">Squarespace SEO</span>
-                <span class="dropdown-entry-copy">Refine page structure and content signals for cleaner search performance.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Shopify%20SEO">
-                <span class="dropdown-entry-title">Shopify SEO</span>
-                <span class="dropdown-entry-copy">Strengthen category, product, and collection rankings for store growth.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Walmart%20SEO">
-                <span class="dropdown-entry-title">Walmart SEO</span>
-                <span class="dropdown-entry-copy">Optimize product visibility and search rankings on Walmart marketplace.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Big-ecommerce%20SEO">
-                <span class="dropdown-entry-title">Big-ecommerce SEO</span>
-                <span class="dropdown-entry-copy">Scale SEO strategy across large enterprise e-commerce platforms.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Local%20SEO">
-                <span class="dropdown-entry-title">Local SEO</span>
-                <span class="dropdown-entry-copy">Increase map visibility and local search reach for nearby customers.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=On-Page%20SEO">
-                <span class="dropdown-entry-title">On Page SEO</span>
-                <span class="dropdown-entry-copy">Improve relevance, clarity, and ranking signals across key pages.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Off-Page%20SEO">
-                <span class="dropdown-entry-title">Off Page SEO</span>
-                <span class="dropdown-entry-copy">Strengthen authority signals that support long-term search visibility.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Technical%20SEO">
-                <span class="dropdown-entry-title">Technical SEO</span>
-                <span class="dropdown-entry-copy">Fix crawl, indexing, and site performance issues that block rankings.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Keyword%20Research">
-                <span class="dropdown-entry-title">Keyword Research</span>
-                <span class="dropdown-entry-copy">Find realistic search opportunities that match intent and business value.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Competitor%20Analysis">
-                <span class="dropdown-entry-title">Competitor Analysis</span>
-                <span class="dropdown-entry-copy">See where competing websites win traffic and how to close the gap.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Website%20Audit">
-                <span class="dropdown-entry-title">Website Audit</span>
-                <span class="dropdown-entry-copy">Spot the ranking blockers that are holding your site back today.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=Google%20Ads">
-                <span class="dropdown-entry-title">Google Ads</span>
-                <span class="dropdown-entry-copy">Strategic paid search campaigns that drive qualified traffic and conversions.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=YouTube%20SEO">
-                <span class="dropdown-entry-title">YouTube SEO</span>
-                <span class="dropdown-entry-copy">Improve video discovery with stronger targeting and metadata planning.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Consultant</button>
-            <div class="dropdown-panel dropdown-panel-consultant">
-              <div class="dropdown-group">
-                <button class="dropdown-group-trigger" type="button" aria-expanded="false">
-                  <span class="dropdown-group-title">CMS Consultant</span>
-                  <span class="dropdown-group-arrow"></span>
-                </button>
-                <div class="dropdown-submenu">
-                  <a class="dropdown-entry" href="consultants/wordpress-seo-consultant.html">
-                    <span class="dropdown-entry-title">WordPress SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Platform-specific guidance for stronger rankings and execution.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/wix-seo-consultant.html">
-                    <span class="dropdown-entry-title">Wix SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Translate strategy into practical Wix actions and priorities.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/magento-seo-consultant.html">
-                    <span class="dropdown-entry-title">Magento SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Support large catalog optimization with scalable priorities.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/squarespace-seo-consultant.html">
-                    <span class="dropdown-entry-title">Squarespace SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Refine Squarespace sites for cleaner search performance.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/shopify-seo-consultant.html">
-                    <span class="dropdown-entry-title">Shopify SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Focus store visibility on pages and queries that drive sales.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/walmart-seo-consultant.html">
-                    <span class="dropdown-entry-title">Walmart SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Optimize product visibility on Walmart marketplace.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/big-ecommerce-seo-consultant.html">
-                    <span class="dropdown-entry-title">Big-ecommerce SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Scale SEO strategy across enterprise platforms.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/local-seo-consultant.html">
-                    <span class="dropdown-entry-title">Local SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Guidance for local search visibility and map rankings.</span>
-                  </a>
-                  <a class="dropdown-entry" href="consultants/youtube-seo-consultant.html">
-                    <span class="dropdown-entry-title">YouTube SEO Consultant</span>
-                    <span class="dropdown-entry-copy">Video discovery strategy and metadata optimization.</span>
-                  </a>
-                </div>
-              </div>
-              <a class="dropdown-entry" href="consultants/ecommerce-seo-consultant.html">
-                <span class="dropdown-entry-title">E-commerce SEO Consultant</span>
-                <span class="dropdown-entry-copy">Shape a search plan that supports revenue growth and reporting clarity.</span>
-              </a>
-              <a class="dropdown-entry" href="contact.html?service=YouTube%20SEO%20Consultant">
-                <span class="dropdown-entry-title">YouTube SEO Consultant</span>
-                <span class="dropdown-entry-copy">Video discovery strategy with stronger targeting and metadata.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item has-dropdown" data-dropdown>
-            <button class="navigation-link dropdown-trigger" type="button" aria-expanded="false">Service Areas</button>
-            <div class="dropdown-panel dropdown-panel-service-areas">
-              <a class="dropdown-entry" href="service-areas/usa/index.html">
-                <span class="dropdown-entry-title">US</span>
-                <span class="dropdown-entry-copy">SEO services across United States cities and regions.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/uk/index.html">
-                <span class="dropdown-entry-title">UK</span>
-                <span class="dropdown-entry-copy">SEO services across United Kingdom regions.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/canada/index.html">
-                <span class="dropdown-entry-title">Canada</span>
-                <span class="dropdown-entry-copy">SEO services across Canadian provinces.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/australia/index.html">
-                <span class="dropdown-entry-title">Australia</span>
-                <span class="dropdown-entry-copy">SEO services across Australian states and territories.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/germany/index.html">
-                <span class="dropdown-entry-title">Germany</span>
-                <span class="dropdown-entry-copy">SEO services across German regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/netherlands/index.html">
-                <span class="dropdown-entry-title">Netherlands</span>
-                <span class="dropdown-entry-copy">SEO services across Dutch cities and provinces.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/switzerland/index.html">
-                <span class="dropdown-entry-title">Switzerland</span>
-                <span class="dropdown-entry-copy">SEO services across Swiss cantons and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/sweden/index.html">
-                <span class="dropdown-entry-title">Sweden</span>
-                <span class="dropdown-entry-copy">SEO services across Swedish regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/norway/index.html">
-                <span class="dropdown-entry-title">Norway</span>
-                <span class="dropdown-entry-copy">SEO services across Norwegian regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/singapore/index.html">
-                <span class="dropdown-entry-title">Singapore</span>
-                <span class="dropdown-entry-copy">SEO services across Singapore districts and areas.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/ireland/index.html">
-                <span class="dropdown-entry-title">Ireland</span>
-                <span class="dropdown-entry-copy">SEO services across Irish regions and cities.</span>
-              </a>
-              <a class="dropdown-entry" href="service-areas/new-zealand/index.html">
-                <span class="dropdown-entry-title">New Zealand</span>
-                <span class="dropdown-entry-copy">SEO services across New Zealand regions and cities.</span>
-              </a>
-            </div>
-          </li>
-          <li class="navigation-item"><a class="navigation-link" href="case-studies/index.html">Case Studies</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="portfolio/index.html">Portfolio</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="about.html">About Me</a></li>
-          <li class="navigation-item"><a class="navigation-link" href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <a class="button button-primary" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a class="button button-secondary" href="contact.html?service=Live%20Online%20Meeting#contact-form">Live Online Meeting</a>
-      </div>
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <div class="logo-box">Y</div>
+      <div class="logo-text">YOUR LOGO <span>SEO EXPERT</span></div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero-section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="section-kicker">Personal SEO expert brand</span>
-          <h1 class="hero-title">SEO Expert Helping You Rank Higher &amp; Get More Traffic</h1>
-          <p class="hero-summary">Jannatul builds practical SEO strategies for businesses that need better rankings, stronger organic visibility, and clearer reporting. Every recommendation is based on real search opportunity, competitive context, and measurable performance data.</p>
-          <ul class="hero-points">
-            <li>Clear SEO strategy</li>
-            <li>Competitor &amp; keyword insights</li>
-            <li>Data tracking with GSC &amp; GA4</li>
-          </ul>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-            <a class="button button-secondary" href="contact.html?service=Live%20Online%20Meeting#contact-form">Live Online Meeting</a>
-          </div>
-          <p class="hero-note">No phone calls. Communication via WhatsApp and online meetings.</p>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <svg class="hero-illustration" viewBox="0 0 640 560" role="img">
-            <defs>
-              <linearGradient id="heroBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#2563eb"></stop>
-                <stop offset="100%" stop-color="#7c3aed"></stop>
-              </linearGradient>
-              <linearGradient id="heroTeal" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#14b8a6"></stop>
-                <stop offset="100%" stop-color="#22c55e"></stop>
-              </linearGradient>
-              <linearGradient id="heroOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#fb923c"></stop>
-                <stop offset="100%" stop-color="#f97316"></stop>
-              </linearGradient>
-            </defs>
-            <rect x="88" y="74" width="452" height="332" rx="28" fill="#ffffff"></rect>
-            <rect x="112" y="100" width="404" height="18" rx="9" fill="#e2e8f0"></rect>
-            <rect x="112" y="152" width="180" height="190" rx="24" fill="#eff6ff"></rect>
-            <rect x="314" y="152" width="202" height="126" rx="24" fill="#f8fafc"></rect>
-            <rect x="314" y="296" width="202" height="46" rx="18" fill="#f8fafc"></rect>
-            <path d="M150 296L192 252L235 266L276 206" fill="none" stroke="url(#heroBlue)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"></path>
-            <circle cx="150" cy="296" r="11" fill="#2563eb"></circle>
-            <circle cx="192" cy="252" r="11" fill="#7c3aed"></circle>
-            <circle cx="235" cy="266" r="11" fill="#14b8a6"></circle>
-            <circle cx="276" cy="206" r="11" fill="#f97316"></circle>
-            <rect x="340" y="178" width="82" height="16" rx="8" fill="#cbd5e1"></rect>
-            <rect x="340" y="214" width="150" height="12" rx="6" fill="#e2e8f0"></rect>
-            <rect x="340" y="240" width="124" height="12" rx="6" fill="#e2e8f0"></rect>
-            <rect x="340" y="312" width="22" height="22" rx="11" fill="url(#heroTeal)"></rect>
-            <rect x="378" y="317" width="112" height="12" rx="6" fill="#cbd5e1"></rect>
-            <rect x="386" y="388" width="172" height="116" rx="28" fill="#ffffff"></rect>
-            <rect x="410" y="418" width="110" height="16" rx="8" fill="#dbeafe"></rect>
-            <rect x="410" y="448" width="68" height="16" rx="8" fill="url(#heroBlue)"></rect>
-            <rect x="494" y="448" width="40" height="16" rx="8" fill="url(#heroOrange)"></rect>
-            <rect x="82" y="376" width="248" height="132" rx="28" fill="#ffffff"></rect>
-            <rect x="106" y="406" width="82" height="16" rx="8" fill="#dbeafe"></rect>
-            <rect x="106" y="438" width="168" height="12" rx="6" fill="#e2e8f0"></rect>
-            <rect x="106" y="462" width="144" height="12" rx="6" fill="#e2e8f0"></rect>
-            <circle cx="536" cy="126" r="54" fill="#eef2ff"></circle>
-            <path d="M520 126L533 139L557 113" fill="none" stroke="url(#heroTeal)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M60 150C60 96 104 52 158 52H178C178 120 122 176 54 176Z" fill="#dbeafe"></path>
-            <path d="M566 356C620 356 664 400 664 454H644C590 454 546 410 546 356Z" fill="#dcfce7"></path>
-            <circle cx="116" cy="520" r="20" fill="#fef3c7"></circle>
-            <circle cx="564" cy="62" r="16" fill="#ede9fe"></circle>
-          </svg>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <div class="nav-item">
+        <button class="nav-dropdown-trigger">Services</button>
+        <div class="dropdown-menu">
+          <a href="../services/wordpress-seo.html" class="dropdown-item">WordPress SEO</a>
+          <a href="../services/wix-seo.html" class="dropdown-item">Wix SEO</a>
+          <a href="../services/magento-seo.html" class="dropdown-item">Magento SEO</a>
+          <a href="../services/squarespace-seo.html" class="dropdown-item">Squarespace SEO</a>
+          <a href="../services/shopify-seo.html" class="dropdown-item">Shopify SEO</a>
+          <a href="../services/ecommerce-seo.html" class="dropdown-item">E-commerce SEO</a>
+          <a href="../services/big-ecommerce-seo.html" class="dropdown-item">Big E-commerce SEO</a>
+          <div class="dropdown-divider"></div>
+          <a href="../services/local-seo.html" class="dropdown-item">Local SEO</a>
+          <a href="../services/on-page-seo.html" class="dropdown-item">On-Page SEO</a>
+          <a href="../services/off-page-seo.html" class="dropdown-item">Off-Page SEO</a>
+          <a href="../services/technical-seo.html" class="dropdown-item">Technical SEO</a>
+          <div class="dropdown-divider"></div>
+          <a href="../services/keyword-research.html" class="dropdown-item">Keyword Research</a>
+          <a href="../services/competitor-analysis.html" class="dropdown-item">Competitor Analysis</a>
+          <a href="../services/website-audit.html" class="dropdown-item">Website Audit</a>
+          <a href="../services/google-ads.html" class="dropdown-item">Google Ads</a>
+          <a href="../services/youtube-seo.html" class="dropdown-item">YouTube SEO</a>
         </div>
       </div>
-    </section>
-
-    <section class="section-block">
-      <div class="container section-header">
-        <div>
-          <span class="section-kicker">Services & consultant focus</span>
-          <h2 class="section-title">Search support built around how your website actually grows</h2>
-        </div>
-        <p class="section-intro">This vertical carousel includes platform-specific SEO services, consultant positioning, and strategic support areas that help businesses improve rankings with clearer priorities.</p>
-      </div>
-
-      <div class="container carousel-shell">
-        <div class="vertical-carousel" aria-label="SEO services and consultant specialties">
-          <div class="vertical-carousel-track">
-            <a class="service-card" href="contact.html?service=WordPress%20SEO">
-              <span class="service-card-title">WordPress SEO</span>
-              <span class="service-card-copy">Improve structure, content alignment, and crawl confidence across WordPress websites.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Shopify%20SEO">
-              <span class="service-card-title">Shopify SEO</span>
-              <span class="service-card-copy">Increase visibility for collection pages, products, and revenue-driving queries.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Squarespace%20SEO">
-              <span class="service-card-title">Squarespace SEO</span>
-              <span class="service-card-copy">Refine search signals with better page structure and content clarity.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Magento%20SEO">
-              <span class="service-card-title">Magento SEO</span>
-              <span class="service-card-copy">Support large catalogs with practical technical and content priorities.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Wix%20SEO">
-              <span class="service-card-title">Wix SEO</span>
-              <span class="service-card-copy">Turn Wix website improvements into clearer organic search momentum.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=YouTube%20SEO">
-              <span class="service-card-title">YouTube SEO</span>
-              <span class="service-card-copy">Improve discoverability with stronger targeting, structure, and metadata.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Local%20SEO">
-              <span class="service-card-title">Local SEO</span>
-              <span class="service-card-copy">Help nearby customers find your business more consistently in search.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Keyword%20Research">
-              <span class="service-card-title">Keyword Research</span>
-              <span class="service-card-copy">Identify terms that match business goals, search intent, and ranking potential.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Website%20Audit">
-              <span class="service-card-title">Website Audit</span>
-              <span class="service-card-copy">Reveal missed opportunities, technical blockers, and content weaknesses.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Competitor%20Analysis">
-              <span class="service-card-title">Competitor Analysis</span>
-              <span class="service-card-copy">See what competing sites do well and where to outperform them.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=On-Page%20SEO">
-              <span class="service-card-title">On-Page SEO</span>
-              <span class="service-card-copy">Improve page-level relevance so important content ranks more clearly.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Off-Page%20SEO">
-              <span class="service-card-title">Off-Page SEO</span>
-              <span class="service-card-copy">Strengthen authority signals that support long-term search trust.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=E-commerce%20SEO">
-              <span class="service-card-title">E-commerce SEO</span>
-              <span class="service-card-copy">Build search visibility around products, categories, and buying intent.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=WordPress%20SEO%20Consultant">
-              <span class="service-card-title">WordPress SEO Consultant</span>
-              <span class="service-card-copy">Platform-specific consulting for sustainable rankings and cleaner execution.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Wix%20SEO%20Consultant">
-              <span class="service-card-title">Wix SEO Consultant</span>
-              <span class="service-card-copy">Translate strategy into practical Wix actions with measurable priorities.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Shopify%20SEO%20Consultant">
-              <span class="service-card-title">Shopify SEO Consultant</span>
-              <span class="service-card-copy">Improve store visibility with consulting grounded in revenue-focused search behavior.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=E-commerce%20SEO%20Consultant">
-              <span class="service-card-title">E-commerce SEO Consultant</span>
-              <span class="service-card-copy">Align organic growth plans with commercial pages, data, and content priorities.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=WordPress%20SEO">
-              <span class="service-card-title">WordPress SEO</span>
-              <span class="service-card-copy">Improve structure, content alignment, and crawl confidence across WordPress websites.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Shopify%20SEO">
-              <span class="service-card-title">Shopify SEO</span>
-              <span class="service-card-copy">Increase visibility for collection pages, products, and revenue-driving queries.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Squarespace%20SEO">
-              <span class="service-card-title">Squarespace SEO</span>
-              <span class="service-card-copy">Refine search signals with better page structure and content clarity.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Magento%20SEO">
-              <span class="service-card-title">Magento SEO</span>
-              <span class="service-card-copy">Support large catalogs with practical technical and content priorities.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Wix%20SEO">
-              <span class="service-card-title">Wix SEO</span>
-              <span class="service-card-copy">Turn Wix website improvements into clearer organic search momentum.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=YouTube%20SEO">
-              <span class="service-card-title">YouTube SEO</span>
-              <span class="service-card-copy">Improve discoverability with stronger targeting, structure, and metadata.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Local%20SEO">
-              <span class="service-card-title">Local SEO</span>
-              <span class="service-card-copy">Help nearby customers find your business more consistently in search.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Keyword%20Research">
-              <span class="service-card-title">Keyword Research</span>
-              <span class="service-card-copy">Identify terms that match business goals, search intent, and ranking potential.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Website%20Audit">
-              <span class="service-card-title">Website Audit</span>
-              <span class="service-card-copy">Reveal missed opportunities, technical blockers, and content weaknesses.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Competitor%20Analysis">
-              <span class="service-card-title">Competitor Analysis</span>
-              <span class="service-card-copy">See what competing sites do well and where to outperform them.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=On-Page%20SEO">
-              <span class="service-card-title">On-Page SEO</span>
-              <span class="service-card-copy">Improve page-level relevance so important content ranks more clearly.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Off-Page%20SEO">
-              <span class="service-card-title">Off-Page SEO</span>
-              <span class="service-card-copy">Strengthen authority signals that support long-term search trust.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=E-commerce%20SEO">
-              <span class="service-card-title">E-commerce SEO</span>
-              <span class="service-card-copy">Build search visibility around products, categories, and buying intent.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=WordPress%20SEO%20Consultant">
-              <span class="service-card-title">WordPress SEO Consultant</span>
-              <span class="service-card-copy">Platform-specific consulting for sustainable rankings and cleaner execution.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Wix%20SEO%20Consultant">
-              <span class="service-card-title">Wix SEO Consultant</span>
-              <span class="service-card-copy">Translate strategy into practical Wix actions with measurable priorities.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=Shopify%20SEO%20Consultant">
-              <span class="service-card-title">Shopify SEO Consultant</span>
-              <span class="service-card-copy">Improve store visibility with consulting grounded in revenue-focused search behavior.</span>
-            </a>
-            <a class="service-card" href="contact.html?service=E-commerce%20SEO%20Consultant">
-              <span class="service-card-title">E-commerce SEO Consultant</span>
-              <span class="service-card-copy">Align organic growth plans with commercial pages, data, and content priorities.</span>
-            </a>
-          </div>
+      <div class="nav-item">
+        <button class="nav-dropdown-trigger">Service Areas</button>
+        <div class="dropdown-menu">
+          <a href="../service-areas/usa/index.html" class="dropdown-item">United States</a>
+          <a href="../service-areas/uk/index.html" class="dropdown-item">United Kingdom</a>
+          <a href="../service-areas/canada/index.html" class="dropdown-item">Canada</a>
+          <a href="../service-areas/australia/index.html" class="dropdown-item">Australia</a>
+          <div class="dropdown-divider"></div>
+          <a href="../service-areas/germany/index.html" class="dropdown-item">Germany</a>
+          <a href="../service-areas/netherlands/index.html" class="dropdown-item">Netherlands</a>
+          <a href="../service-areas/switzerland/index.html" class="dropdown-item">Switzerland</a>
+          <a href="../service-areas/sweden/index.html" class="dropdown-item">Sweden</a>
+          <a href="../service-areas/norway/index.html" class="dropdown-item">Norway</a>
+          <div class="dropdown-divider"></div>
+          <a href="../service-areas/ireland/index.html" class="dropdown-item">Ireland</a>
+          <a href="../service-areas/new-zealand/index.html" class="dropdown-item">New Zealand</a>
+          <a href="../service-areas/singapore/index.html" class="dropdown-item">Singapore</a>
         </div>
       </div>
-    </section>
-
-    <section class="section-block muted-section">
-      <div class="container narrative-grid">
-        <div class="narrative-copy">
-          <span class="section-kicker">Who is Jannatul</span>
-          <h2 class="section-title">A focused SEO partner for brands that want strategy, clarity, and consistent execution</h2>
-          <p>Jannatul works as a personal SEO expert for businesses that need more than a checklist. The work starts by understanding where search visibility is currently underperforming, which competitors are taking market share, and which improvements can produce meaningful ranking gains without wasting time on low-value actions.</p>
-          <p>Instead of generic recommendations, Jannatul shapes SEO around the platform, business model, and current search landscape. That means cleaner priorities, more useful reporting, and a search strategy that connects technical improvements, content opportunities, and measurable traffic growth.</p>
-        </div>
-        <div class="capability-panel">
-          <ul class="capability-list">
-            <li>SEO strategy expertise</li>
-            <li>Multi-platform experience</li>
-            <li>Keyword &amp; competitor research</li>
-            <li>Google Search Console usage</li>
-            <li>GA4 data analysis</li>
-            <li>Reporting clarity</li>
-          </ul>
+      <a href="../portfolio/index.html">Portfolio</a>
+      <a href="../case-studies/index.html">Case Studies</a>
+      <div class="nav-item">
+        <button class="nav-dropdown-trigger">Consultant Pages</button>
+        <div class="dropdown-menu">
+          <a href="../consultants/wordpress-seo-consultant.html" class="dropdown-item">WordPress SEO Consultant</a>
+          <a href="../consultants/wix-seo-consultant.html" class="dropdown-item">Wix SEO Consultant</a>
+          <a href="../consultants/magento-seo-consultant.html" class="dropdown-item">Magento SEO Consultant</a>
+          <a href="../consultants/squarespace-seo-consultant.html" class="dropdown-item">Squarespace SEO Consultant</a>
+          <a href="../consultants/shopify-seo-consultant.html" class="dropdown-item">Shopify SEO Consultant</a>
+          <div class="dropdown-divider"></div>
+          <a href="../consultants/ecommerce-seo-consultant.html" class="dropdown-item">E-commerce SEO Consultant</a>
+          <a href="../consultants/big-ecommerce-seo-consultant.html" class="dropdown-item">Big E-commerce Consultant</a>
+          <a href="../consultants/walmart-seo-consultant.html" class="dropdown-item">Walmart SEO Consultant</a>
+          <div class="dropdown-divider"></div>
+          <a href="../consultants/local-seo-consultant.html" class="dropdown-item">Local SEO Consultant</a>
+          <a href="../consultants/youtube-seo-consultant.html" class="dropdown-item">YouTube SEO Consultant</a>
         </div>
       </div>
-    </section>
-
-    <section class="section-block">
-      <div class="container section-header section-header-single">
-        <div>
-          <span class="section-kicker">How Jannatul helps you</span>
-          <h2 class="section-title">SEO work that turns analysis into practical action</h2>
-        </div>
-      </div>
-      <div class="container prose-panel">
-        <p>Jannatul begins by auditing the current website to identify ranking blockers, missed content opportunities, and technical issues that weaken visibility. That audit is supported by competitor research and keyword planning so the strategy is based on actual search demand and realistic opportunities, not assumptions. From there, the work moves into on-page SEO improvements that strengthen page relevance, internal structure, metadata, and content direction for the pages that matter most.</p>
-        <p>Technical SEO is handled with the same practical approach, focusing on crawlability, indexing signals, site structure, and the foundations that help search engines interpret the website correctly. Performance tracking through Google Search Console and GA4 keeps the strategy grounded in evidence, while reporting stays clear enough to show what changed, why it mattered, and where the next opportunities are coming from.</p>
-      </div>
-    </section>
-
-    <section class="section-block muted-section">
-      <div class="container section-header">
-        <div>
-          <span class="section-kicker">Consultant positioning</span>
-          <h2 class="section-title">Platform-specific SEO consulting for businesses that want sharper guidance</h2>
-        </div>
-        <p class="section-intro">Consulting support is structured for owners, teams, and growing brands that need a clearer direction before making platform-specific SEO decisions.</p>
-      </div>
-      <div class="container consultant-grid">
-        <article class="consultant-card">
-          <h3 class="consultant-card-title">WordPress SEO Consultant</h3>
-          <p>Clarify technical priorities, content structure, and page-level SEO improvements for WordPress websites.</p>
-          <a class="text-link" href="contact.html?service=WordPress%20SEO%20Consultant">Discuss this service</a>
-        </article>
-        <article class="consultant-card">
-          <h3 class="consultant-card-title">Wix SEO Consultant</h3>
-          <p>Get direct guidance on how to improve Wix visibility without unnecessary complexity or wasted effort.</p>
-          <a class="text-link" href="contact.html?service=Wix%20SEO%20Consultant">Discuss this service</a>
-        </article>
-        <article class="consultant-card">
-          <h3 class="consultant-card-title">Shopify SEO Consultant</h3>
-          <p>Support store growth with clearer optimization priorities for products, collections, and category intent.</p>
-          <a class="text-link" href="contact.html?service=Shopify%20SEO%20Consultant">Discuss this service</a>
-        </article>
-        <article class="consultant-card">
-          <h3 class="consultant-card-title">E-commerce SEO Consultant</h3>
-          <p>Shape a stronger organic growth strategy for commercial websites that depend on qualified search traffic.</p>
-          <a class="text-link" href="contact.html?service=E-commerce%20SEO%20Consultant">Discuss this service</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-block cta-section">
-      <div class="container cta-panel">
-        <div>
-          <span class="section-kicker">Start the conversation</span>
-          <h2 class="section-title">If you need clearer SEO direction, Jannatul is ready to help.</h2>
-          <p class="section-intro">Use WhatsApp for quick communication or request a live online meeting to discuss the website, goals, and current challenges.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="button button-primary" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-          <a class="button button-secondary" href="contact.html?service=Live%20Online%20Meeting#contact-form">Live Online Meeting</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-block" id="blog-section">
-      <div class="container section-header">
-        <div>
-          <span class="section-kicker">Latest Articles</span>
-          <h2 class="section-title">SEO Blog: Guides & Resources</h2>
-        </div>
-        <p class="section-intro">Read comprehensive guides covering WordPress SEO, Shopify optimization, keyword research, local SEO, technical SEO, and proven ranking strategies.</p>
-      </div>
-
-      <div class="horizontal-carousel-container">
-        <div class="horizontal-carousel" aria-label="Blog articles showcase">
-          <div class="horizontal-carousel-track">
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">WordPress SEO</span>
-                <h3 class="blog-card-title"><a href="blog/wordpress-seo-guide.html">Complete WordPress SEO Guide: From Setup to Rankings</a></h3>
-                <p class="blog-card-excerpt">A comprehensive guide to optimizing your WordPress website for search engines, covering technical setup, on-page optimization, and proven ranking strategies.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">WordPress SEO</span>
-                <h3 class="blog-card-title"><a href="blog/wordpress-seo-checklist.html">WordPress SEO Checklist</a></h3>
-                <p class="blog-card-excerpt">Complete checklist of essential WordPress SEO optimization steps and best practices.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">WordPress SEO</span>
-                <h3 class="blog-card-title"><a href="blog/wordpress-seo-consultant-guide.html">WordPress SEO Consultant Guide</a></h3>
-                <p class="blog-card-excerpt">Professional guide for WordPress SEO consulting and implementation strategies.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/shopify-seo-strategy.html">Shopify SEO Strategy: Rank Products & Collections</a></h3>
-                <p class="blog-card-excerpt">Comprehensive Shopify SEO strategies to optimize product pages, collections, and categories for better search visibility and sales.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/shopify-product-optimization.html">Shopify Product Page Optimization</a></h3>
-                <p class="blog-card-excerpt">Optimize Shopify product pages for higher search rankings and increased conversions.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-seo-beginner.html">E-commerce SEO for Beginners: Start Ranking Products</a></h3>
-                <p class="blog-card-excerpt">Beginner's guide to e-commerce SEO fundamentals and product ranking strategies.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/magento-seo-advanced.html">Magento SEO Advanced</a></h3>
-                <p class="blog-card-excerpt">Advanced SEO optimization techniques for large Magento e-commerce platforms.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/magento-seo-optimization.html">Magento SEO Optimization</a></h3>
-                <p class="blog-card-excerpt">Complete guide to optimizing Magento stores for search visibility and organic traffic.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Keyword Research</span>
-                <h3 class="blog-card-title"><a href="blog/keyword-research-guide.html">Complete Keyword Research Guide: Find Keywords That Rank</a></h3>
-                <p class="blog-card-excerpt">Learn advanced keyword research techniques to discover high-value search terms and build sustainable SEO strategy.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Keyword Research</span>
-                <h3 class="blog-card-title"><a href="blog/long-tail-keyword-research.html">Long-Tail Keyword Research</a></h3>
-                <p class="blog-card-excerpt">Master long-tail keyword strategy for better targeting and higher conversion rates.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Internal Linking</span>
-                <h3 class="blog-card-title"><a href="blog/internal-linking-strategy.html">Internal Linking Strategy for Better SEO</a></h3>
-                <p class="blog-card-excerpt">Strategic internal linking techniques to improve site structure and search rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/local-seo-guide.html">Local SEO Guide: Dominate Local Search Results</a></h3>
-                <p class="blog-card-excerpt">Master local SEO with strategies for Google Business Profile optimization and local citations.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/google-business-profile-optimization.html">Google Business Profile Optimization</a></h3>
-                <p class="blog-card-excerpt">Optimize your Google Business Profile for better local search visibility and customer engagement.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">On-Page SEO</span>
-                <h3 class="blog-card-title"><a href="blog/on-page-seo.html">On-Page SEO Optimization: Complete Checklist & Guide</a></h3>
-                <p class="blog-card-excerpt">Learn every on-page SEO factor that influences rankings from title tags to internal linking.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">On-Page SEO</span>
-                <h3 class="blog-card-title"><a href="blog/title_tag_meta_optimization.html">Title Tag & Meta Optimization</a></h3>
-                <p class="blog-card-excerpt">Master title tag and meta description optimization for higher click-through rates.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/technical-seo-guide.html">Technical SEO Guide: Complete Implementation Checklist</a></h3>
-                <p class="blog-card-excerpt">Master technical SEO fundamentals including site speed, crawlability, indexing, and schema markup.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/core-web-vitals.html">Core Web Vitals Guide: Improve User Experience and Rankings</a></h3>
-                <p class="blog-card-excerpt">Optimize page experience with measurable fixes that support faster browsing and better rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/site-speed-optimization.html">Site Speed Optimization Techniques That Work</a></h3>
-                <p class="blog-card-excerpt">Practical techniques to improve site speed and boost search rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/page-speed-optimization-seo.html">Page Speed Optimization for SEO: Complete Technical Guide</a></h3>
-                <p class="blog-card-excerpt">Complete technical guide to page speed optimization for SEO and user experience.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/schema-markup.html">Structured Data Schema Markup Guide</a></h3>
-                <p class="blog-card-excerpt">Master structured data and schema markup for rich snippets and better search visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/mobile-first-indexing.html">Mobile First Indexing Strategy</a></h3>
-                <p class="blog-card-excerpt">Optimize your website for mobile-first indexing to maintain strong search rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/mobile-seo-guide.html">Mobile SEO Best Practices: Optimize for Mobile-First Indexing</a></h3>
-                <p class="blog-card-excerpt">Complete guide to mobile SEO best practices and mobile-first optimization.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/image-seo-optimization.html">Image SEO and Optimization</a></h3>
-                <p class="blog-card-excerpt">Optimize images for search engines and improve page performance.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Link Building</span>
-                <h3 class="blog-card-title"><a href="blog/backlink-strategy.html">Backlink Strategy: How to Build Quality Links That Rank</a></h3>
-                <p class="blog-card-excerpt">Learn proven backlink strategies and link building techniques to build domain authority.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Link Building</span>
-                <h3 class="blog-card-title"><a href="blog/white_hat_link_building_guest_posting.html">White Hat Link Building: Guest Posting Strategy</a></h3>
-                <p class="blog-card-excerpt">Ethical link building strategies through guest posting and digital PR.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/wix-seo-best-practices.html">Wix SEO Best Practices</a></h3>
-                <p class="blog-card-excerpt">SEO best practices specifically designed for Wix websites.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/wix-seo-optimization.html">Wix SEO Optimization</a></h3>
-                <p class="blog-card-excerpt">Complete Wix SEO optimization guide for better search visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/squarespace-seo-guide.html">Squarespace SEO Guide</a></h3>
-                <p class="blog-card-excerpt">Comprehensive SEO guide for Squarespace websites and builders.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/squarespace-seo-consultant.html">Squarespace SEO Consultant</a></h3>
-                <p class="blog-card-excerpt">Professional Squarespace SEO consulting and optimization strategies.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/youtube-seo-guide.html">YouTube SEO Guide</a></h3>
-                <p class="blog-card-excerpt">Master YouTube SEO for better video discovery and channel growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/youtube-seo-optimization.html">YouTube SEO Optimization: Complete Video Discovery Guide</a></h3>
-                <p class="blog-card-excerpt">Complete guide to YouTube SEO and video optimization for discoverability.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Console</span>
-                <h3 class="blog-card-title"><a href="blog/google-search-console-guide.html">Google Search Console Mastery: Complete Setup & Optimization Guide</a></h3>
-                <p class="blog-card-excerpt">Master Google Search Console for monitoring, optimizing, and improving search performance.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/competitor-seo-analysis.html">Competitor SEO Analysis: Smarter Strategy</a></h3>
-                <p class="blog-card-excerpt">Learn how to reverse-engineer competitor strategy and build stronger SEO plans.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/voice-search-seo.html">Voice Search SEO Optimization</a></h3>
-                <p class="blog-card-excerpt">Optimize for voice search to capture emerging search trends.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/multiregional-seo.html">Multiregional SEO Strategy</a></h3>
-                <p class="blog-card-excerpt">Strategy for optimizing websites targeting multiple regions and languages.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Off-Page SEO</span>
-                <h3 class="blog-card-title"><a href="blog/off-page-seo.html">Off-Page SEO Strategies for Authority Growth</a></h3>
-                <p class="blog-card-excerpt">Strategies to build authority and improve rankings through off-page SEO.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Website Services</span>
-                <h3 class="blog-card-title"><a href="blog/website-audit-guide.html">Website Audit Guide</a></h3>
-                <p class="blog-card-excerpt">Complete guide to conducting comprehensive SEO website audits.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Content Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/content-marketing-seo-strategy.html">Content Marketing for SEO: Strategy & Execution Guide</a></h3>
-                <p class="blog-card-excerpt">Master content marketing for SEO with proven strategies to create valuable content that ranks and converts readers into customers.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">User Experience</span>
-                <h3 class="blog-card-title"><a href="blog/user-experience-seo.html">User Experience (UX) and SEO: How Design Impacts Rankings</a></h3>
-                <p class="blog-card-excerpt">Discover how user experience and design directly influence search rankings and organic traffic through page experience metrics.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/local-citation-building.html">Local Citation Building: Complete Guide for Local Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn how to build high-quality local citations that boost your local search rankings and local business visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Link Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/link-earning-vs-link-building.html">Link Earning vs Link Building: Modern SEO Approach</a></h3>
-                <p class="blog-card-excerpt">Understand the difference between link earning and link building, and learn ethical strategies to earn high-quality backlinks.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Quality</span>
-                <h3 class="blog-card-title"><a href="blog/eat-expertise-authority-trustworthiness.html">E-A-T: Expertise, Authoritativeness, Trustworthiness for SEO</a></h3>
-                <p class="blog-card-excerpt">Master E-A-T and how Google evaluates expertise, authoritativeness, and trustworthiness for better search rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-product-ranking-strategy.html">E-commerce Product Ranking Strategy: Rank Products & Drive Sales</a></h3>
-                <p class="blog-card-excerpt">Master e-commerce SEO to rank product pages higher and drive qualified, purchase-ready traffic and conversions.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-seo-best-practices.html">E-Commerce SEO Best Practices: Rank Products and Drive Sales</a></h3>
-                <p class="blog-card-excerpt">Discover proven e-commerce SEO strategies to optimize product pages, categories, and your entire store for search visibility and revenue growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/product-page-optimization.html">Product Page Optimization: Complete SEO Checklist for E-Commerce</a></h3>
-                <p class="blog-card-excerpt">Master product page optimization for search rankings, conversion, and revenue. Learn every element that impacts product visibility and sales.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/category-page-seo.html">Category Page SEO: Drive Broad Traffic and Build Topical Authority</a></h3>
-                <p class="blog-card-excerpt">Master category page optimization to rank for broader keywords, drive higher-volume traffic, and build topical authority in your product categories.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-keyword-research.html">E-Commerce Keyword Research: Find High-Converting Buying Intent Keywords</a></h3>
-                <p class="blog-card-excerpt">Learn proven strategies to research e-commerce keywords that convert to sales. Identify buyer intent keywords and build a winning product keyword strategy.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-reviews-seo.html">Customer Reviews as SEO: Boost Rankings and Conversion With Reviews</a></h3>
-                <p class="blog-card-excerpt">Discover how customer reviews drive both SEO rankings and conversion rates. Learn strategies for gathering reviews and leveraging them for growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-site-speed.html">E-Commerce Site Speed: The Critical Ranking and Conversion Factor</a></h3>
-                <p class="blog-card-excerpt">Discover why site speed is crucial for e-commerce rankings and conversion. Learn optimization tactics that improve Core Web Vitals and boost sales.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-mobile-seo.html">Mobile-First E-Commerce: Optimize for Mobile-First Indexing and Mobile Users</a></h3>
-                <p class="blog-card-excerpt">Master mobile SEO for e-commerce. Learn how to optimize mobile experience, improve mobile rankings, and drive mobile-first conversion growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/seasonal-ecommerce-seo.html">Seasonal E-Commerce SEO: Capture Peak Season Traffic and Revenue</a></h3>
-                <p class="blog-card-excerpt">Learn proven seasonal SEO strategies for e-commerce. Plan ahead, optimize for seasonal keywords, and maximize revenue during peak shopping seasons.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-backlink-strategy.html">E-Commerce Backlink Strategy: Build Authority and Dominate Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn proven e-commerce backlink strategies. Build quality links that establish authority, boost product rankings, and drive sustainable organic revenue.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-schema-markup.html">E-Commerce Schema Markup: Implement Rich Snippets for Better Rankings</a></h3>
-                <p class="blog-card-excerpt">Master structured data and schema markup for e-commerce. Implement product, review, and pricing schema to earn rich snippets and improve click-through rates.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">SEO Analytics</span>
-                <h3 class="blog-card-title"><a href="blog/seo-analytics-measurement.html">SEO Analytics & Measurement: Track What Matters</a></h3>
-                <p class="blog-card-excerpt">Master SEO analytics to measure success, track performance, and use data to improve your SEO strategy and results.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/structured-data-schema-advanced.html">Advanced Structured Data & Schema Markup Implementation Guide</a></h3>
-                <p class="blog-card-excerpt">Master schema implementation to enable rich snippets, improve search appearance, and help Google understand your content.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/local-seo-service-businesses.html">Local SEO for Service Businesses: Complete Strategy Guide</a></h3>
-                <p class="blog-card-excerpt">Master local SEO for service businesses with location pages, service area optimization, and proven ranking tactics.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">SEO Best Practices</span>
-                <h3 class="blog-card-title"><a href="blog/seo-mistakes-to-avoid.html">Common SEO Mistakes to Avoid: Protect Your Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn common SEO mistakes that hurt rankings and how to avoid costly pitfalls to protect your search visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">B2B Marketing</span>
-                <h3 class="blog-card-title"><a href="blog/b2b-seo-strategy.html">B2B SEO Strategy: Generate Qualified Leads Through Search</a></h3>
-                <p class="blog-card-excerpt">Master B2B SEO to attract qualified leads from search. Learn strategies for long sales cycles and high-value keyword targeting.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Video SEO</span>
-                <h3 class="blog-card-title"><a href="blog/video-seo-optimization.html">Video SEO Optimization: Rank Videos in Search Results</a></h3>
-                <p class="blog-card-excerpt">Master video SEO to rank videos on YouTube and Google search. Learn optimization techniques and how video boosts overall SEO.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">International SEO</span>
-                <h3 class="blog-card-title"><a href="blog/international-seo-multilingual.html">International SEO & Multilingual Strategy: Rank Globally</a></h3>
-                <p class="blog-card-excerpt">Master international SEO and multilingual optimization. Learn hreflang implementation and strategies to rank in multiple countries.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Content Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/topical-authority-pillar-pages.html">Topical Authority & Pillar Pages: Content Cluster Strategy</a></h3>
-                <p class="blog-card-excerpt">Master topical authority and pillar page strategy. Learn how to establish deep expertise through strategic content clustering.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Visibility</span>
-                <h3 class="blog-card-title"><a href="blog/featured-snippets-position-zero.html">Featured Snippets & Position Zero: Rank Above #1</a></h3>
-                <p class="blog-card-excerpt">Master featured snippet optimization to earn position zero rankings and capture Google's featured snippets.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Mobile SEO</span>
-                <h3 class="blog-card-title"><a href="blog/mobile-first-indexing-optimization.html">Mobile First Indexing: Complete Optimization Guide</a></h3>
-                <p class="blog-card-excerpt">Master mobile-first indexing. Learn how Google now indexes the mobile version first and how to optimize for success.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Nonprofit Marketing</span>
-                <h3 class="blog-card-title"><a href="blog/seo-for-nonprofits.html">SEO for Nonprofits: Free & Low-Cost Strategies</a></h3>
-                <p class="blog-card-excerpt">Master SEO for nonprofits. Learn budget-friendly strategies to increase donations, volunteers, and community awareness.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">SEO & Growth</span>
-                <h3 class="blog-card-title"><a href="blog/seo-cro-conversion-rate.html">SEO & CRO: Merging Search Traffic With Conversions</a></h3>
-                <p class="blog-card-excerpt">Master the integration of SEO and CRO. Learn to optimize organic search traffic for conversions and maximize ROI.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/shopify-seo-consultant.html">Shopify SEO Consultant</a></h3>
-                <p class="blog-card-excerpt">Focus store visibility on the pages and queries that drive sales with professional Shopify SEO consulting.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/wix-seo-best-practices.html">Wix SEO Best Practices</a></h3>
-                <p class="blog-card-excerpt">SEO best practices specifically designed for Wix websites.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/wix-seo-optimization.html">Wix SEO Optimization</a></h3>
-                <p class="blog-card-excerpt">Complete Wix SEO optimization guide for better search visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/squarespace-seo-guide.html">Squarespace SEO Guide</a></h3>
-                <p class="blog-card-excerpt">Comprehensive SEO guide for Squarespace websites and builders.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/squarespace-seo-consultant.html">Squarespace SEO Consultant</a></h3>
-                <p class="blog-card-excerpt">Professional Squarespace SEO consulting and optimization strategies.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/youtube-seo-guide.html">YouTube SEO Guide</a></h3>
-                <p class="blog-card-excerpt">Master YouTube SEO for better video discovery and channel growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Platform-Specific</span>
-                <h3 class="blog-card-title"><a href="blog/youtube-seo-optimization.html">YouTube SEO Optimization: Complete Video Discovery Guide</a></h3>
-                <p class="blog-card-excerpt">Complete guide to YouTube SEO and video optimization for discoverability.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Console</span>
-                <h3 class="blog-card-title"><a href="blog/google-search-console-guide.html">Google Search Console Mastery: Complete Setup & Optimization Guide</a></h3>
-                <p class="blog-card-excerpt">Master Google Search Console for monitoring, optimizing, and improving search performance.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/competitor-seo-analysis.html">Competitor SEO Analysis: Smarter Strategy</a></h3>
-                <p class="blog-card-excerpt">Learn how to reverse-engineer competitor strategy and build stronger SEO plans.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/voice-search-seo.html">Voice Search SEO Optimization</a></h3>
-                <p class="blog-card-excerpt">Optimize for voice search to capture emerging search trends.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Advanced Topics</span>
-                <h3 class="blog-card-title"><a href="blog/multiregional-seo.html">Multiregional SEO Strategy</a></h3>
-                <p class="blog-card-excerpt">Strategy for optimizing websites targeting multiple regions and languages.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Off-Page SEO</span>
-                <h3 class="blog-card-title"><a href="blog/off-page-seo.html">Off-Page SEO Strategies for Authority Growth</a></h3>
-                <p class="blog-card-excerpt">Strategies to build authority and improve rankings through off-page SEO.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Website Services</span>
-                <h3 class="blog-card-title"><a href="blog/website-audit-guide.html">Website Audit Guide</a></h3>
-                <p class="blog-card-excerpt">Complete guide to conducting comprehensive SEO website audits.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Content Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/content-marketing-seo-strategy.html">Content Marketing for SEO: Strategy & Execution Guide</a></h3>
-                <p class="blog-card-excerpt">Master content marketing for SEO with proven strategies to create valuable content that ranks and converts readers into customers.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">User Experience</span>
-                <h3 class="blog-card-title"><a href="blog/user-experience-seo.html">User Experience (UX) and SEO: How Design Impacts Rankings</a></h3>
-                <p class="blog-card-excerpt">Discover how user experience and design directly influence search rankings and organic traffic through page experience metrics.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/local-citation-building.html">Local Citation Building: Complete Guide for Local Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn how to build high-quality local citations that boost your local search rankings and local business visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Link Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/link-earning-vs-link-building.html">Link Earning vs Link Building: Modern SEO Approach</a></h3>
-                <p class="blog-card-excerpt">Understand the difference between link earning and link building, and learn ethical strategies to earn high-quality backlinks.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Quality</span>
-                <h3 class="blog-card-title"><a href="blog/eat-expertise-authority-trustworthiness.html">E-A-T: Expertise, Authoritativeness, Trustworthiness for SEO</a></h3>
-                <p class="blog-card-excerpt">Master E-A-T and how Google evaluates expertise, authoritativeness, and trustworthiness for better search rankings.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-product-ranking-strategy.html">E-commerce Product Ranking Strategy: Rank Products & Drive Sales</a></h3>
-                <p class="blog-card-excerpt">Master e-commerce SEO to rank product pages higher and drive qualified, purchase-ready traffic and conversions.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-seo-best-practices.html">E-Commerce SEO Best Practices: Rank Products and Drive Sales</a></h3>
-                <p class="blog-card-excerpt">Discover proven e-commerce SEO strategies to optimize product pages, categories, and your entire store for search visibility and revenue growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/product-page-optimization.html">Product Page Optimization: Complete SEO Checklist for E-Commerce</a></h3>
-                <p class="blog-card-excerpt">Master product page optimization for search rankings, conversion, and revenue. Learn every element that impacts product visibility and sales.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/category-page-seo.html">Category Page SEO: Drive Broad Traffic and Build Topical Authority</a></h3>
-                <p class="blog-card-excerpt">Master category page optimization to rank for broader keywords, drive higher-volume traffic, and build topical authority in your product categories.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-keyword-research.html">E-Commerce Keyword Research: Find High-Converting Buying Intent Keywords</a></h3>
-                <p class="blog-card-excerpt">Learn proven strategies to research e-commerce keywords that convert to sales. Identify buyer intent keywords and build a winning product keyword strategy.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-reviews-seo.html">Customer Reviews as SEO: Boost Rankings and Conversion With Reviews</a></h3>
-                <p class="blog-card-excerpt">Discover how customer reviews drive both SEO rankings and conversion rates. Learn strategies for gathering reviews and leveraging them for growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-site-speed.html">E-Commerce Site Speed: The Critical Ranking and Conversion Factor</a></h3>
-                <p class="blog-card-excerpt">Discover why site speed is crucial for e-commerce rankings and conversion. Learn optimization tactics that improve Core Web Vitals and boost sales.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-mobile-seo.html">Mobile-First E-Commerce: Optimize for Mobile-First Indexing and Mobile Users</a></h3>
-                <p class="blog-card-excerpt">Master mobile SEO for e-commerce. Learn how to optimize mobile experience, improve mobile rankings, and drive mobile-first conversion growth.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/seasonal-ecommerce-seo.html">Seasonal E-Commerce SEO: Capture Peak Season Traffic and Revenue</a></h3>
-                <p class="blog-card-excerpt">Learn proven seasonal SEO strategies for e-commerce. Plan ahead, optimize for seasonal keywords, and maximize revenue during peak shopping seasons.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-backlink-strategy.html">E-Commerce Backlink Strategy: Build Authority and Dominate Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn proven e-commerce backlink strategies. Build quality links that establish authority, boost product rankings, and drive sustainable organic revenue.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">E-commerce SEO</span>
-                <h3 class="blog-card-title"><a href="blog/ecommerce-schema-markup.html">E-Commerce Schema Markup: Implement Rich Snippets for Better Rankings</a></h3>
-                <p class="blog-card-excerpt">Master structured data and schema markup for e-commerce. Implement product, review, and pricing schema to earn rich snippets and improve click-through rates.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">SEO Analytics</span>
-                <h3 class="blog-card-title"><a href="blog/seo-analytics-measurement.html">SEO Analytics & Measurement: Track What Matters</a></h3>
-                <p class="blog-card-excerpt">Master SEO analytics to measure success, track performance, and use data to improve your SEO strategy and results.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Technical SEO</span>
-                <h3 class="blog-card-title"><a href="blog/structured-data-schema-advanced.html">Advanced Structured Data & Schema Markup Implementation Guide</a></h3>
-                <p class="blog-card-excerpt">Master schema implementation to enable rich snippets, improve search appearance, and help Google understand your content.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Local SEO</span>
-                <h3 class="blog-card-title"><a href="blog/local-seo-service-businesses.html">Local SEO for Service Businesses: Complete Strategy Guide</a></h3>
-                <p class="blog-card-excerpt">Master local SEO for service businesses with location pages, service area optimization, and proven ranking tactics.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">SEO Best Practices</span>
-                <h3 class="blog-card-title"><a href="blog/seo-mistakes-to-avoid.html">Common SEO Mistakes to Avoid: Protect Your Rankings</a></h3>
-                <p class="blog-card-excerpt">Learn common SEO mistakes that hurt rankings and how to avoid costly pitfalls to protect your search visibility.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">B2B Marketing</span>
-                <h3 class="blog-card-title"><a href="blog/b2b-seo-strategy.html">B2B SEO Strategy: Generate Qualified Leads Through Search</a></h3>
-                <p class="blog-card-excerpt">Master B2B SEO to attract qualified leads from search. Learn strategies for long sales cycles and high-value keyword targeting.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Video SEO</span>
-                <h3 class="blog-card-title"><a href="blog/video-seo-optimization.html">Video SEO Optimization: Rank Videos in Search Results</a></h3>
-                <p class="blog-card-excerpt">Master video SEO to rank videos on YouTube and Google search. Learn optimization techniques and how video boosts overall SEO.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">International SEO</span>
-                <h3 class="blog-card-title"><a href="blog/international-seo-multilingual.html">International SEO & Multilingual Strategy: Rank Globally</a></h3>
-                <p class="blog-card-excerpt">Master international SEO and multilingual optimization. Learn hreflang implementation and strategies to rank in multiple countries.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Content Strategy</span>
-                <h3 class="blog-card-title"><a href="blog/topical-authority-pillar-pages.html">Topical Authority & Pillar Pages: Content Cluster Strategy</a></h3>
-                <p class="blog-card-excerpt">Master topical authority and pillar page strategy. Learn how to establish deep expertise through strategic content clustering.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Search Visibility</span>
-                <h3 class="blog-card-title"><a href="blog/featured-snippets-position-zero.html">Featured Snippets & Position Zero: Rank Above #1</a></h3>
-                <p class="blog-card-excerpt">Master featured snippet optimization to earn position zero rankings and capture Google's featured snippets.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Mobile SEO</span>
-                <h3 class="blog-card-title"><a href="blog/mobile-first-indexing-optimization.html">Mobile First Indexing: Complete Optimization Guide</a></h3>
-                <p class="blog-card-excerpt">Master mobile-first indexing. Learn how Google now indexes the mobile version first and how to optimize for success.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="blog-card-carousel">
-              <div class="blog-card-content">
-                <span class="blog-card-category">Nonprofit Marketing</span>
-                <h3 class="blog-card-title"><a href="blog/seo-for-nonprofits.html">SEO for Nonprofits: Free & Low-Cost Strategies</a></h3>
-                <p class="blog-card-excerpt">Master SEO for nonprofits. Learn budget-friendly strategies to increase donations, volunteers, and community awareness.</p>
-                <div class="blog-card-meta">
-                  <span>Read Article →</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="container cta-container">
-        <a class="button button-secondary" href="blog/index.html">View All 66 Articles →</a>
-      </div>
-    </section>
-
-    <section class="section-block muted-section" id="case-studies-section">
-      <div class="container section-header">
-        <div>
-          <span class="section-kicker">Real Results</span>
-          <h2 class="section-title">Case Studies & Success Stories</h2>
-        </div>
-        <p class="section-intro">See how businesses like yours increased organic traffic, leads, and revenue through strategic SEO implementation across different platforms and industries.</p>
-      </div>
-
-      <div class="horizontal-carousel-container">
-        <div class="horizontal-carousel" aria-label="Case studies showcase">
-          <div class="horizontal-carousel-track">
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">E-Commerce</span>
-                <h3 class="case-study-card-title"><a href="case-studies/ecommerce-clothing-store.html">Online Clothing Store: 287% Organic Traffic Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Shopify store increased organic traffic from 1,200 to 4,644 monthly visitors and sales from $50K to $127K through product optimization, content expansion, and strategic internal linking.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">287% traffic</span>
-                  <span class="stat-badge">156% sales</span>
-                  <span class="stat-badge">12 months</span>
-                </div>
-              </div>
-              <a href="case-studies/ecommerce-clothing-store.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">WordPress Blog</span>
-                <h3 class="case-study-card-title"><a href="case-studies/wordpress-blog-growth.html">Gardening Blog: 940% Organic Traffic Increase</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>WordPress hobby blog grew from 5,000 to 52,000 monthly visitors through systematic content expansion, backlink building, and topical authority development in the gardening niche.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">940% growth</span>
-                  <span class="stat-badge">85 #1 rankings</span>
-                  <span class="stat-badge">18 months</span>
-                </div>
-              </div>
-              <a href="case-studies/wordpress-blog-growth.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Local Services</span>
-                <h3 class="case-study-card-title"><a href="case-studies/local-hvac-service.html">HVAC Company: 420% Lead Growth from Local SEO</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Local HVAC service increased monthly leads from 8-12 to 42-50 through Google Business Profile optimization, review management, and local citation building strategy.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">420% leads</span>
-                  <span class="stat-badge">#1 local rankings</span>
-                  <span class="stat-badge">6 months</span>
-                </div>
-              </div>
-              <a href="case-studies/local-hvac-service.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">B2B SaaS</span>
-                <h3 class="case-study-card-title"><a href="case-studies/saas-platform-seo.html">SaaS Platform: 580% Qualified Lead Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Project management SaaS platform increased qualified MQLs from 12-15 to 80-95 monthly through thought leadership content, commercial keyword targeting, and authority building.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">580% leads</span>
-                  <span class="stat-badge">$2.4M ARR</span>
-                  <span class="stat-badge">24 months</span>
-                </div>
-              </div>
-              <a href="case-studies/saas-platform-seo.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Hospitality</span>
-                <h3 class="case-study-card-title"><a href="case-studies/restaurant-local-seo.html">Independent Restaurant: 310% Reservation Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Fine dining restaurant increased online reservations from 45-55 to 195-210 monthly through Google Business optimization, review management, and restaurant directory strategy.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">310% reservations</span>
-                  <span class="stat-badge">230% walk-ins</span>
-                  <span class="stat-badge">9 months</span>
-                </div>
-              </div>
-              <a href="case-studies/restaurant-local-seo.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">B2B Manufacturing</span>
-                <h3 class="case-study-card-title"><a href="case-studies/b2b-manufacturing-seo.html">Industrial Manufacturer: 410% Lead Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Technical content strategy and thought leadership positioning transformed a traditional manufacturer into an industry authority generating qualified leads.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">410% leads</span>
-                  <span class="stat-badge">Authority boost</span>
-                  <span class="stat-badge">24 months</span>
-                </div>
-              </div>
-              <a href="case-studies/b2b-manufacturing-seo.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Competitive Strategy</span>
-                <h3 class="case-study-card-title"><a href="case-studies/competitor-analysis-growth.html">Tech Startup: 380% Traffic Gain Through Competitor Analysis</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Deep competitor analysis revealed massive keyword gaps and allowed a new market entrant to capture search traffic faster than expected.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">380% traffic</span>
-                  <span class="stat-badge">Keyword gaps</span>
-                  <span class="stat-badge">6 months</span>
-                </div>
-              </div>
-              <a href="case-studies/competitor-analysis-growth.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Content Marketing</span>
-                <h3 class="case-study-card-title"><a href="case-studies/content-marketing-roi.html">Fintech Company: $950K Content-Driven Revenue</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Strategic content marketing initiative positioned fintech platform as trusted authority, driving substantial revenue growth through organic acquisition.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">$950K revenue</span>
-                  <span class="stat-badge">Content-driven</span>
-                  <span class="stat-badge">18 months</span>
-                </div>
-              </div>
-              <a href="case-studies/content-marketing-roi.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Large E-Commerce</span>
-                <h3 class="case-study-card-title"><a href="case-studies/magento-ecommerce-large.html">Industrial Equipment Supplier: 520% Organic Revenue</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Large Magento platform optimized through technical SEO and product-focused strategy, resulting in massive organic revenue growth.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">520% revenue</span>
-                  <span class="stat-badge">Organic focus</span>
-                  <span class="stat-badge">20 months</span>
-                </div>
-              </div>
-              <a href="case-studies/magento-ecommerce-large.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Multi-Location</span>
-                <h3 class="case-study-card-title"><a href="case-studies/multi-location-seo.html">Fitness Franchise: 350% Customer Acquisition</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Multi-location franchise strategy optimized search visibility across service territories, driving consistent customer acquisition growth.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">350% growth</span>
-                  <span class="stat-badge">Multi-location</span>
-                  <span class="stat-badge">15 months</span>
-                </div>
-              </div>
-              <a href="case-studies/multi-location-seo.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Authority Building</span>
-                <h3 class="case-study-card-title"><a href="case-studies/off-page-seo-authority.html">Digital Agency: 190% Authority Boost</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Strategic off-page SEO and authority building efforts elevated agency positioning and search visibility in competitive market.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">190% authority</span>
-                  <span class="stat-badge">Backlink strategy</span>
-                  <span class="stat-badge">12 months</span>
-                </div>
-              </div>
-              <a href="case-studies/off-page-seo-authority.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Service Business</span>
-                <h3 class="case-study-card-title"><a href="case-studies/small-business-seo-success.html">Plumbing Service: 270% Growth Through Consulting</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Local plumbing service achieved significant growth through targeted SEO consulting and local search optimization strategy.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">270% growth</span>
-                  <span class="stat-badge">Local SEO</span>
-                  <span class="stat-badge">10 months</span>
-                </div>
-              </div>
-              <a href="case-studies/small-business-seo-success.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Creative Agency</span>
-                <h3 class="case-study-card-title"><a href="case-studies/squarespace-creative-agency.html">Design Agency: 265% Project Inquiry Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Creative agency on Squarespace improved project lead generation through portfolio optimization and visual content strategy.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">265% inquiries</span>
-                  <span class="stat-badge">Portfolio SEO</span>
-                  <span class="stat-badge">14 months</span>
-                </div>
-              </div>
-              <a href="case-studies/squarespace-creative-agency.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Recovery Strategy</span>
-                <h3 class="case-study-card-title"><a href="case-studies/website-audit-recovery.html">B2B Business: 290% Traffic Recovery Through Audit</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Comprehensive website audit identified critical issues and recovery strategy restored and grew organic traffic significantly.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">290% recovery</span>
-                  <span class="stat-badge">Audit findings</span>
-                  <span class="stat-badge">8 months</span>
-                </div>
-              </div>
-              <a href="case-studies/website-audit-recovery.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Wix Platform</span>
-                <h3 class="case-study-card-title"><a href="case-studies/wix-small-business.html">Pet Sitting Service: 340% Customer Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>Small pet sitting business on Wix achieved significant customer growth through platform-specific SEO optimization.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">340% growth</span>
-                  <span class="stat-badge">Wix SEO</span>
-                  <span class="stat-badge">11 months</span>
-                </div>
-              </div>
-              <a href="case-studies/wix-small-business.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-
-            <article class="case-study-card-carousel">
-              <div class="case-study-card-header">
-                <span class="case-study-card-type">Video Creator</span>
-                <h3 class="case-study-card-title"><a href="case-studies/youtube-seo-creator.html">Fitness Content Creator: 620% View Growth</a></h3>
-              </div>
-              <div class="case-study-card-content">
-                <p>YouTube content creator optimized video discoverability through title, description, and metadata strategy achieving massive view growth.</p>
-                <div class="case-study-card-stats">
-                  <span class="stat-badge">620% views</span>
-                  <span class="stat-badge">YouTube SEO</span>
-                  <span class="stat-badge">16 months</span>
-                </div>
-              </div>
-              <a href="case-studies/youtube-seo-creator.html" class="case-study-card-link">Read Case Study →</a>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="container cta-container">
-        <a class="button button-secondary" href="case-studies/index.html">View All 16 Case Studies →</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-column footer-intro">
-        <a class="brand-mark footer-brand" href="index.html"><img src="https://cdn.builder.io/api/v1/image/assets%2Fa2c3e1a683ea4f22ae97dfe6e0dc5549%2F256331e95c7940f3a76d58863c23333c?format=webp&width=800&height=1200" alt="Jannatul Logo" class="brand-logo"></a>
-        <p>Personal SEO expert support for businesses that want search growth with stronger strategy, cleaner priorities, and clear reporting.</p>
-      </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Quick links</h3>
-        <ul class="footer-list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Services</h3>
-        <ul class="footer-list">
-          <li><a href="contact.html?service=Website%20Audit">Website Audit</a></li>
-          <li><a href="contact.html?service=Keyword%20Research">Keyword Research</a></li>
-          <li><a href="contact.html?service=Local%20SEO">Local SEO</a></li>
-          <li><a href="contact.html?service=E-commerce%20SEO">E-commerce SEO</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h3 class="footer-title">Contact</h3>
-        <ul class="footer-list">
-          <li><a href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a></li>
-          <li><button class="copy-email-button" type="button" data-copy-email="jannnatul.manager@gmail.com">jannnatul.manager@gmail.com</button></li>
-          <li><button class="copy-email-button" type="button" data-copy-email="jannatul.strategies@gmail.com">jannatul.strategies@gmail.com</button></li>
-          <li><a href="contact.html?service=Live%20Online%20Meeting#contact-form">Live online meeting</a></li>
-        </ul>
-      </div>
+      <a href="../blog/index.html">Blog</a>
     </div>
-  </footer>
+    <a href="../index.html" class="btn-primary">Get Free SEO Audit</a>
+  </div>
+</nav>
 
-  <div class="floating-contact-bar">
-    <a class="floating-contact-link whatsapp-pill" href="https://wa.me/8801745912252" target="_blank" rel="noreferrer">WhatsApp</a>
-    <div class="floating-email-group" data-email-dropdown>
-      <button class="floating-contact-link email-pill" type="button" aria-expanded="false">Email</button>
-      <div class="floating-email-panel">
-        <button class="copy-email-button floating-email-button" type="button" data-copy-email="jannnatul.manager@gmail.com">jannnatul.manager@gmail.com</button>
-        <button class="copy-email-button floating-email-button" type="button" data-copy-email="jannatul.strategies@gmail.com">jannatul.strategies@gmail.com</button>
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1>Rank Higher.<br>Get Found.<br>Grow Faster.</h1>
+        <p class="hero-sub">Result-driven SEO services that increase your visibility, drive qualified traffic and grow your business.</p>
+        <div class="hero-badges">
+          <span class="badge">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.2 3.7H11l-2.9 2.1 1.1 3.5L6.5 8.2 4.3 10.3l1.1-3.5L2.5 4.7h3.3L6.5 1z" fill="currentColor"/></svg>
+            16+ SEO Services
+          </span>
+          <span class="badge">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.2 3.7H11l-2.9 2.1 1.1 3.5L6.5 8.2 4.3 10.3l1.1-3.5L2.5 4.7h3.3L6.5 1z" fill="currentColor"/></svg>
+            Proven Results
+          </span>
+          <span class="badge">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.2 3.7H11l-2.9 2.1 1.1 3.5L6.5 8.2 4.3 10.3l1.1-3.5L2.5 4.7h3.3L6.5 1z" fill="currentColor"/></svg>
+            White Hat SEO
+          </span>
+          <span class="badge">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.2 3.7H11l-2.9 2.1 1.1 3.5L6.5 8.2 4.3 10.3l1.1-3.5L2.5 4.7h3.3L6.5 1z" fill="currentColor"/></svg>
+            Transparent Reporting
+          </span>
+        </div>
+        <div class="hero-ctas">
+          <button class="btn-primary">Get Free SEO Audit</button>
+          <button class="btn-outline">Talk to Consultant</button>
+        </div>
+        <div class="hero-rating">
+          <div style="display:flex;gap:4px">
+            <div class="google-dot" style="background:#ea4335;color:#fff">G</div>
+          </div>
+          <span class="stars">★★★★★</span>
+          <span><strong>4.9</strong> (520+ Reviews)</span>
+        </div>
+      </div>
+      <div>
+        <div class="video-card">
+          <div class="play-btn">▶</div>
+          <p>Watch: How We Deliver SEO Results</p>
+        </div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- ─── REVIEWS ─── -->
+<section class="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px">
+        <span style="color:#ea4335;font-weight:700;font-size:13px">G</span>
+        <span class="stars">★★★★★</span>
+        <span style="font-size:13px;font-weight:600">4.9</span>
+      </div>
+      <p class="section-sub" style="margin-top:4px">Real reviews from real clients on Google.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">J</div>
+          <div class="reviewer-info"><div class="name">John D.</div><div class="time">2 weeks ago</div></div>
+          <div class="g-badge">G</div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Excellent SEO service! Our rankings improved significantly and traffic increased by 150%.</p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">S</div>
+          <div class="reviewer-info"><div class="name">Sarah K.</div><div class="time">1 month ago</div></div>
+          <div class="g-badge">G</div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Professional, transparent and result-driven team. Highly recommended!</p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">M</div>
+          <div class="reviewer-info"><div class="name">Michael T.</div><div class="time">3 weeks ago</div></div>
+          <div class="g-badge">G</div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Their SEO strategy helped our business grow beyond expectations.</p>
+      </div>
+      <div class="review-card">
+        <div class="reviewer">
+          <div class="reviewer-avatar">E</div>
+          <div class="reviewer-info"><div class="name">Emily R.</div><div class="time">1 month ago</div></div>
+          <div class="g-badge">G</div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Great communication and outstanding results. A true SEO partner!</p>
+      </div>
+    </div>
+    <div class="view-all-btn">
+      <button class="btn-google">
+        <span style="color:#ea4335;font-weight:800">G</span> View All Reviews on Google ↗
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CREDENTIALS ─── -->
+<section class="credentials">
+  <div class="container">
+    <div class="cred-grid">
+      <div class="cred-video">
+        <div class="play-btn">▶</div>
+      </div>
+      <div class="cred-content">
+        <p class="section-label">CREDENTIALS</p>
+        <h2 class="section-title">Certified. Trusted.<br>Results Driven.</h2>
+        <p>We follow industry best practices and hold certifications that ensure quality SEO services.</p>
+        <div class="cert-logos">
+          <div class="cert-logo" onclick="openCert('Google Partner','Google Partner Certified')">GP</div>
+          <div class="cert-logo" onclick="openCert('SEMrush','SEMrush Certified Expert')">SR</div>
+          <div class="cert-logo" onclick="openCert('Ahrefs','Ahrefs SEO Certification')">AH</div>
+          <div class="cert-logo" onclick="openCert('HubSpot','HubSpot Content Marketing')">HS</div>
+        </div>
+        <button class="btn-outline">See Our Certifications</button>
+        <p class="cred-caption">Our Process, Results & Client Success Stories</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <p class="section-label">OUR SERVICES</p>
+      <h2 class="section-title">16 Comprehensive SEO Services to Grow Your Business</h2>
+      <p class="section-sub">End-to-end SEO solutions tailored to improve rankings, traffic and conversions.</p>
+    </div>
+    <div class="services-grid">
+      <a href="services/wordpress-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⚡</div><div class="service-num">01</div></div><h3>WordPress SEO</h3><p>Optimize WordPress websites for higher rankings and better performance.</p></a>
+      <a href="services/wix-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🌐</div><div class="service-num">02</div></div><h3>Wix SEO</h3><p>Improve Wix website visibility and drive organic traffic.</p></a>
+      <a href="services/magento-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🔶</div><div class="service-num">03</div></div><h3>Magento SEO</h3><p>Boost Magento store rankings and increase conversions.</p></a>
+      <a href="services/squarespace-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⬡</div><div class="service-num">04</div></div><h3>Squarespace SEO</h3><p>Enhance Squarespace website SEO and grow your audience.</p></a>
+      <a href="services/shopify-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🛍</div><div class="service-num">05</div></div><h3>Shopify SEO</h3><p>Optimize Shopify stores to rank higher and sell more.</p></a>
+      <a href="services/ecommerce-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🏪</div><div class="service-num">06</div></div><h3>E-commerce SEO</h3><p>Improve E-commerce store SEO for more traffic and sales.</p></a>
+      <a href="services/big-ecommerce-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🛒</div><div class="service-num">07</div></div><h3>Big E-commerce SEO</h3><p>Improve Big-ecommerce store SEO for more traffic and sales.</p></a>
+      <a href="services/local-seo.html" class="service-card"><div class="service-top"><div class="service-icon">📍</div><div class="service-num">08</div></div><h3>Local SEO</h3><p>Rank higher in local search results and attract nearby customers.</p></a>
+      <a href="services/on-page-seo.html" class="service-card"><div class="service-top"><div class="service-icon">📄</div><div class="service-num">09</div></div><h3>On-Page SEO</h3><p>Optimize pages for better rankings and user experience.</p></a>
+      <a href="services/off-page-seo.html" class="service-card"><div class="service-top"><div class="service-icon">🔗</div><div class="service-num">10</div></div><h3>Off-Page SEO</h3><p>Build authority with quality backlinks and outreach.</p></a>
+      <a href="services/technical-seo.html" class="service-card"><div class="service-top"><div class="service-icon">⚙️</div><div class="service-num">11</div></div><h3>Technical SEO</h3><p>Fix technical issues and improve website health for search engines.</p></a>
+      <a href="services/keyword-research.html" class="service-card"><div class="service-top"><div class="service-icon">🔍</div><div class="service-num">12</div></div><h3>Keyword Research</h3><p>Find high-value keywords that drive qualified traffic.</p></a>
+      <a href="services/competitor-analysis.html" class="service-card"><div class="service-top"><div class="service-icon">📊</div><div class="service-num">13</div></div><h3>Competitor Analysis</h3><p>Analyze competitors and find opportunities to rank ahead.</p></a>
+      <a href="services/website-audit.html" class="service-card"><div class="service-top"><div class="service-icon">🔎</div><div class="service-num">14</div></div><h3>Website Audit</h3><p>Identify and fix SEO issues to improve performance.</p></a>
+      <a href="services/google-ads.html" class="service-card"><div class="service-top"><div class="service-icon">📈</div><div class="service-num">15</div></div><h3>Google Ads</h3><p>Run targeted Google Ads campaigns to get more leads and sales.</p></a>
+      <a href="services/youtube-seo.html" class="service-card"><div class="service-top"><div class="service-icon">▶️</div><div class="service-num">16</div></div><h3>YouTube SEO</h3><p>Optimize YouTube videos to rank higher and get more views.</p></a>
+    </div>
+    <div class="center-btn"><a href="services/index.html" class="btn-outline">View All Services</a></div>
+  </div>
+</section>
+
+<!-- ─── CONSULTANT PAGES ─── -->
+<section class="consultants" id="consultants">
+  <div class="container">
+    <div class="consultants-header">
+      <p class="section-label">MEET THE EXPERT</p>
+      <h2 class="section-title">Our Consultant Pages</h2>
+      <p class="section-sub">Learn from our experts and gain in-depth SEO insights.</p>
+    </div>
+    <div class="consultants-grid">
+      <a href="consultants/wordpress-seo-consultant.html" class="consultant-card">
+        <div class="consultant-avatar">👤</div>
+        <h3>WordPress SEO Consultant</h3>
+        <p>CMS strategy, audits & growth consultation.</p>
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/ecommerce-seo-consultant.html" class="consultant-card">
+        <div class="consultant-avatar">👤</div>
+        <h3>E-commerce SEO Consultant</h3>
+        <p>Technical audits, fixes & website performance.</p>
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/local-seo-consultant.html" class="consultant-card">
+        <div class="consultant-avatar">👤</div>
+        <h3>Local SEO Consultant</h3>
+        <p>Local ranking, Google Maps & business growth.</p>
+        <span class="view-link">View Page →</span>
+      </a>
+      <a href="consultants/youtube-seo-consultant.html" class="consultant-card">
+        <div class="consultant-avatar">👤</div>
+        <h3>YouTube SEO Consultant</h3>
+        <p>YouTube growth, content optimization & ranking.</p>
+        <span class="view-link">View Page →</span>
+      </a>
+    </div>
+    <div class="center-btn"><a href="consultants/index.html" class="btn-outline">Explore All Consultant Pages</a></div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="portfolio-header">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-sub">Explore our successful SEO projects across different industries.</p>
+    </div>
+    <div class="portfolio-tabs">
+      <button class="tab active">All</button>
+      <button class="tab">E-Commerce</button>
+      <button class="tab">Local Business</button>
+      <button class="tab">SaaS</button>
+      <button class="tab">Healthcare</button>
+      <button class="tab">Education</button>
+      <button class="tab">Real Estate</button>
+    </div>
+    <div class="portfolio-grid">
+      <a href="portfolio/ecommerce-seo/index.html" class="portfolio-card"><div class="portfolio-img">E-Commerce</div><div class="portfolio-body"><div class="portfolio-tag">E-Commerce</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/local-seo/index.html" class="portfolio-card"><div class="portfolio-img">Local Business</div><div class="portfolio-body"><div class="portfolio-tag">Local Business</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/technical-seo/index.html" class="portfolio-card"><div class="portfolio-img">SaaS</div><div class="portfolio-body"><div class="portfolio-tag">SaaS</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+      <a href="portfolio/wordpress-seo/index.html" class="portfolio-card"><div class="portfolio-img">Healthcare</div><div class="portfolio-body"><div class="portfolio-tag">Healthcare</div><h3>Project Title Goes Here</h3><div class="portfolio-stats"><span>230% Organic Traffic</span><span>130% Keyword Rankings</span></div><span class="portfolio-link">View Project →</span></div></a>
+    </div>
+    <div class="center-btn"><a href="portfolio/index.html" class="btn-outline">View All Portfolio</a></div>
+  </div>
+</section>
+
+<!-- ─── CASE STUDIES ─── -->
+<section class="case-studies" id="case-studies">
+  <div class="container">
+    <div class="case-studies-header">
+      <h2 class="section-title">Proven Strategies. Real Results.</h2>
+      <p class="section-sub">Detailed case studies showing how we deliver measurable growth.</p>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap">
+      <button class="tab active">All</button>
+      <button class="tab">E-Commerce</button>
+      <button class="tab">Local Business</button>
+      <button class="tab">Technical SEO</button>
+      <button class="tab">Content Marketing</button>
+      <button class="tab">Link Building</button>
+    </div>
+    <div class="case-grid">
+      <a href="case-studies/ecommerce-clothing-store.html" class="case-card"><div class="case-tag">E-Commerce</div><h3>How We Increased Organic Traffic by 220% for an E-Commerce Store</h3><div class="case-metrics"><span class="metric">220% Traffic</span><span class="metric">180% Rankings</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/local-hvac-service.html" class="case-card"><div class="case-tag">Local Business</div><h3>How Local SEO Helped a Business Rank #1 in Google Maps</h3><div class="case-metrics"><span class="metric">250% Calls</span><span class="metric">130% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/website-audit-recovery.html" class="case-card"><div class="case-tag">Technical SEO</div><h3>Technical SEO Fixes That Improved Site Health by 300%</h3><div class="case-metrics"><span class="metric">300% Site Health</span><span class="metric">170% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
+      <a href="case-studies/content-marketing-roi.html" class="case-card"><div class="case-tag">Content Marketing</div><h3>Content Strategy That Generated 5X More Organic Leads</h3><div class="case-metrics"><span class="metric">500% Leads</span><span class="metric">200% Traffic</span></div><span class="case-link">Read Case Study →</span></a>
+    </div>
+    <div class="center-btn"><a href="case-studies/index.html" class="btn-outline">View All Case Studies</a></div>
+  </div>
+</section>
+
+<!-- ─── BLOG / TOPICS ─── -->
+<section class="blog" id="blog">
+  <div class="container">
+    <div class="blog-inner">
+      <div class="blog-left">
+        <p class="section-label">CONSULTANT TOPICS</p>
+        <h2>Explore Expert Topics</h2>
+        <p>Insights, strategies and tips from our SEO consultants.</p>
+        <div class="topic-list">
+          <div class="topic-item">Keyword Research &amp; Strategy</div>
+          <div class="topic-item">Technical SEO Best Practices</div>
+          <div class="topic-item">Content Marketing &amp; SEO</div>
+          <div class="topic-item">Link Building Strategies</div>
+          <div class="topic-item">Local SEO Tips &amp; Guides</div>
+        </div>
+        <br>
+        <a href="blog/index.html" class="btn-outline">Read All Articles</a>
+      </div>
+      <div class="blog-right">
+        <div class="blog-cards-wrap">
+          <div class="blog-cards">
+            <div class="blog-card">
+              <div class="blog-thumb"></div>
+              <div class="blog-body">
+                <div class="blog-cat">Keyword Research</div>
+                <h3>How to Find Low Competition Keywords That Drive Traffic</h3>
+                <div class="blog-meta">May 15, 2026 · 6 min read</div>
+              </div>
+            </div>
+            <div class="blog-card">
+              <div class="blog-thumb"></div>
+              <div class="blog-body">
+                <div class="blog-cat">On-Page SEO</div>
+                <h3>On-Page SEO Checklist to Rank Higher in 2024</h3>
+                <div class="blog-meta">May 10, 2026 · 6 min read</div>
+              </div>
+            </div>
+            <div class="blog-card">
+              <div class="blog-thumb"></div>
+              <div class="blog-body">
+                <div class="blog-cat">Technical SEO</div>
+                <h3>Technical SEO: A Complete Guide for Beginners</h3>
+                <div class="blog-meta">May 5, 2026 · 7 min read</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="blog-arrows">
+          <button class="blog-arrow">▲</button>
+          <button class="blog-arrow">▼</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title" style="margin-bottom:32px">FAQ</h2>
+    <div class="faq-inner">
+      <div>
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">How long does it take to see SEO results? <span class="icon">+</span></div>
+          <div class="faq-a">SEO is a long-term strategy. Most clients begin seeing noticeable improvements in rankings and traffic within 3–6 months, depending on competition and the current state of the website.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">What SEO services do you offer? <span class="icon">+</span></div>
+          <div class="faq-a">We offer 16+ SEO services including On-Page, Off-Page, Technical SEO, Local SEO, Keyword Research, Competitor Analysis, Website Audits, and more.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">Do you guarantee #1 rankings? <span class="icon">+</span></div>
+          <div class="faq-a">No ethical SEO agency can guarantee #1 rankings. We do guarantee a data-driven strategy, full transparency, and measurable improvements in your organic performance.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">How do you measure SEO success? <span class="icon">+</span></div>
+          <div class="faq-a">We track keyword rankings, organic traffic, conversion rates, bounce rate, and backlink growth — all reported monthly in a clear, easy-to-understand dashboard.</div>
+        </div>
+      </div>
+      <div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What is your SEO process? <span class="icon">+</span></div>
+          <div class="faq-a">We start with a full audit, followed by strategy development, on-page and technical fixes, content creation, link building, and ongoing reporting and optimization.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">Do you work with small businesses? <span class="icon">+</span></div>
+          <div class="faq-a">Absolutely! We work with businesses of all sizes — from local shops to large enterprises — tailoring our strategies to your specific goals and budget.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">How much do SEO services cost? <span class="icon">+</span></div>
+          <div class="faq-a">Pricing depends on the scope and competitiveness of your industry. We offer flexible packages — contact us for a custom quote after your free SEO audit.</div>
+        </div>
+        <div class="faq-item" style="margin-top:8px">
+          <div class="faq-q" onclick="toggleFaq(this)">Can you recover my website from a Google penalty? <span class="icon">+</span></div>
+          <div class="faq-a">Yes. We have experience diagnosing and recovering from both manual and algorithmic Google penalties through targeted remediation and clean link-building strategies.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="cta-icon">💬</div>
+        <div>
+          <h3>Ready to Grow Your Business with SEO?</h3>
+          <p>Get a free SEO audit and consultation from our experts.</p>
+        </div>
+      </div>
+      <div class="cta-btns">
+        <button class="btn-primary">Get Free SEO Audit</button>
+        <button class="btn-outline">Talk to Consultant</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CERT LIGHTBOX ─── -->
+<div class="cert-overlay" id="certOverlay" onclick="closeCert(event)">
+  <div class="cert-big" id="certBig">
+    <div class="cert-big-logo" id="certBigLogo"></div>
+    <div class="cert-big-name" id="certBigName"></div>
+    <button class="cert-big-close" onclick="closeCertBtn()">✕ Close</button>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:12px">
+          <div class="logo-box" style="background:#fff;color:#0a0a0a">Y</div>
+          <div class="logo-text" style="color:#fff">YOUR LOGO <span style="color:#9ca3af">SEO EXPERT</span></div>
+        </div>
+        <p>We help businesses rank higher, drive traffic and achieve success with data-driven SEO strategies.</p>
+        <div class="social-row">
+          <div class="social-btn">f</div>
+          <div class="social-btn">𝕏</div>
+          <div class="social-btn">in</div>
+          <div class="social-btn">▶</div>
+          <div class="social-btn">📸</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#case-studies">Case Studies</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#">WordPress SEO</a></li>
+          <li><a href="#">Wix SEO</a></li>
+          <li><a href="#">Magento SEO</a></li>
+          <li><a href="#">Shopify SEO</a></li>
+          <li><a href="#">Local SEO</a></li>
+          <li><a href="#">Technical SEO</a></li>
+          <li><a href="#">& More</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services Areas</h4>
+        <ul>
+          <li><a href="#">New York, USA</a></li>
+          <li><a href="#">London, UK</a></li>
+          <li><a href="#">Toronto, Canada</a></li>
+          <li><a href="#">Sydney, Australia</a></li>
+          <li><a href="#">Dubai, UAE</a></li>
+          <li><a href="#">View All Areas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="contact-item"><span>📞</span><span>+1 (123) 456-7890</span></div>
+        <div class="contact-item"><span>✉</span><span>info@yourdomain.com</span></div>
+        <div class="contact-item"><span>📍</span><span>123 Street, City, State, Country</span></div>
+        <div class="map-box">📍</div>
+        <br>
+        <button class="btn-primary" style="width:100%;justify-content:center">Get Free SEO Audit</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Your Company. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Dropdown menu toggle
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const trigger = item.querySelector('.nav-dropdown-trigger');
+    if (trigger) {
+      trigger.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item')) {
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('open'));
+    }
+  });
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Portfolio tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      tab.closest('section').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Cert lightbox
+  function openCert(abbr, name) {
+    document.getElementById('certBigLogo').textContent = abbr;
+    document.getElementById('certBigName').textContent = name;
+    document.getElementById('certOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCertBtn() {
+    document.getElementById('certOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeCert(e) {
+    if (e.target === document.getElementById('certOverlay')) closeCertBtn();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCertBtn(); });
+</script>
+
 </body>
 </html>
